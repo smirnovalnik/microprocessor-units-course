@@ -1,0 +1,7 @@
+__Previews/
+History/
+build/
+*.bin
+*.exe
+.DS_Store
+*.o
