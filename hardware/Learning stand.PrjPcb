@@ -41,7 +41,7 @@ PrefsRevisionGUID=
 
 [Document1]
 DocumentPath=Microcontroller.SchDoc
-AnnotationEnabled=0
+AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
@@ -58,7 +58,7 @@ DocumentUniqueId=CFOCWMLH
 
 [Document2]
 DocumentPath=Peripherals.SchDoc
-AnnotationEnabled=0
+AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
@@ -92,7 +92,7 @@ DocumentUniqueId=
 
 [Document4]
 DocumentPath=Communication.SchDoc
-AnnotationEnabled=0
+AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
@@ -126,7 +126,7 @@ DocumentUniqueId=MBMXVYQJ
 
 [Document6]
 DocumentPath=LEDs.SchDoc
-AnnotationEnabled=0
+AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
