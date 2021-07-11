@@ -108,7 +108,7 @@ GenerateClassCluster=0
 DocumentUniqueId=MUGQUNYR
 
 [Document5]
-DocumentPath=Learning stand.OutJob
+DocumentPath=LearningStand.OutJob
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
