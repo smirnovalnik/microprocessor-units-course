@@ -4,13 +4,13 @@
             AREA    RESET, DATA, READONLY
             EXPORT  __Vectors   ; Метка __Vectors экспортируется из файла компоновщика
 __Vectors
-            DCD     0x20001000     ; Начало стека
+            DCD     0x20004000     ; Начало стека
             DCD     Reset_Handler  ; Вектор сброса
 
 
 ; Секция с константами
             AREA    CONST, DATA, READONLY
-myconst     DCD     10
+myconst     DCD     0xAA
 
 
 ; Секция с данными
