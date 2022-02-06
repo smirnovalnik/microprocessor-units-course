@@ -7,13 +7,13 @@
         {
             "name": "OnChip Debug",
             "cwd": "${workspaceRoot}",
-            "executable": "./build/blinking_led.elf",
+            "executable": "./build/learning_stand.elf",
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "openocd",
             "svdFile": "STM32F072x.svd",
             "interface": "swd",
-            "preLaunchCommands": ["load build/blinking_led.elf"],
+            "preLaunchCommands": ["load build/learning_stand.elf"],
             "configFiles": [
                 "interface/stlink.cfg",
                 "target/stm32f0x.cfg"
@@ -27,16 +27,6 @@
                     { "type": "console", "label": "ITM", "port": 0 }
                 ]
             }
-        },
-        {
-            "name": "Emulator Core Debug",
-            "cwd": "${workspaceRoot}",
-            "executable": "./build/blinking_led.elf",
-            "request": "launch",
-            "type": "cortex-debug",
-            "servertype": "qemu",
-            "machine": "lm3s6965evb",
-            "cpu": "cortex-m3"
         }
     ]
 }

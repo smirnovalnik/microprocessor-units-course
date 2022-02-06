@@ -1,28 +1,29 @@
-# target
-TARGET = blinking_led
 
-# building variables
-# debug build?
+# Цель
+TARGET = learning_stand
+
+# Переменные сборки
+# Включить отладочную информацию или нет
 DEBUG = 1
-# optimization
+# Уровень оптимизации
 OPT = -O0
 
-# paths
-# build path
+# Пути
+# Директория с результатом построения
 BUILD_DIR = build
 
-# sources
-# C sources
+# Исходные коды
+# Исходные коды на языке C
 C_SOURCES =
 
-# ASM sources
+# Исходные коды на языке ассемблер
 ASM_SOURCES = \
 src/main.s
 
-# binaries
+# Префикс бинарников
 PREFIX = arm-none-eabi-
-# The gcc compiler bin path can be either defined in make command via GCC_PATH variable (> make GCC_PATH=xxx)
-# either it can be added to the PATH environment variable.
+# Путь к бинарникам gcc компилятора может быть определен при вызове через переменную GCC_PATH ($ make GCC_PATH=xxx)
+# или может быть добавлен в переменные среды PATH.
 ifdef GCC_PATH
 CC = $(GCC_PATH)/$(PREFIX)gcc
 AS = $(GCC_PATH)/$(PREFIX)gcc -x assembler-with-cpp
@@ -37,63 +38,64 @@ endif
 HEX = $(CP) -O ihex
 BIN = $(CP) -O binary -S
 
-# CFLAGS
-# cpu
+# Флаги CFLAGS
+# Выбор центрального процессора
 CPU = -mcpu=cortex-m0
 
-# fpu
-# NONE for Cortex-M0/M0+/M3
+# Включение поддержки fpu
+# Отсутсвует для Cortex-M0/M0+/M3
+FPU =
 
 # float-abi
+FLOAT-ABI =
 
-# mcu
+# МК
 MCU = $(CPU) -mthumb $(FPU) $(FLOAT-ABI)
 
-# macros for gcc
-# AS defines
+# Подключение макроопределений для gcc
+# Для ассемблера
 AS_DEFS =
 
-# C defines
+# Для C
 C_DEFS =  \
 -DSTM32F072xB
 
-# AS includes
+# Подключение заголовочных файлов
+# Для ассемблера
 AS_INCLUDES =
 
-# C includes
-C_INCLUDES =  \
--Isrc \
--Ilib/cmsis_device_f0/Include \
--Ilib/cmsis_core/Include
+# Для C
+C_INCLUDES =
 
-# compile gcc flags
+# Итоговые флаги gcc
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 CFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
+# Подключение отладочной информации
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
 endif
 
-# generate dependency information
+# Создание информации о зависимостях
 CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 
-# LDFLAGS
-# link script
+# Флаги LDFLAGS
+# Скрипт компоновщика
 LDSCRIPT = STM32F072RBTx_FLASH.ld
 
-# libraries
+# Внешние библиотеки
 LIBS = -lc -lm -lnosys
 LIBDIR =
 LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
 
-# default action: build all
+# Цель по умолчанию: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
 
-# build the application
-# list of objects
+# Построение
+# Список объектов на языке C
 OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o)))
 vpath %.c $(sort $(dir $(C_SOURCES)))
-# list of ASM program objects
+# Список объектов на языке ассемблер
 OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.s=.o)))
 vpath %.s $(sort $(dir $(ASM_SOURCES)))
 
@@ -116,13 +118,13 @@ $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 $(BUILD_DIR):
 	mkdir $@
 
-# clean up
+# Очистка директори с результатом построения
 clean:
 	-rm -fR $(BUILD_DIR)
 
-# flash mcu
+# Прошивка МК
 flash:
-	openocd -f interface/stlink.cfg -f target/stm32f0x.cfg -c "program build/blinking_led.elf verify reset exit"
+	openocd -f interface/stlink.cfg -f target/stm32f0x.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
 
 # dependencies
 -include $(wildcard $(BUILD_DIR)/*.d)
