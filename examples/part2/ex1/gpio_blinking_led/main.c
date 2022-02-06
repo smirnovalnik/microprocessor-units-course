@@ -60,10 +60,10 @@ int main(void)
             GPIOC->ODR = GPIOC->ODR & ~(1 << 7);
             /* Включить светодиод PC15 (LED16) */
             GPIOC->ODR = GPIOC->ODR & ~(1 << 15);
-            
+
             /* Программная временная задержка */
             software_delay(10000);
-            
+
             /* Выключить светодиод PC7 (LED8) */
             GPIOC->ODR = GPIOC->ODR | (1 << 7);
             /* Выключить светодиод PC15 (LED16) */
