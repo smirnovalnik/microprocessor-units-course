@@ -1,6 +1,7 @@
-__Previews/
-History/
-build/
+__Previews
+History
+*.PcbDoc.htm
+build
 *.bin
 *.exe
 .DS_Store
@@ -11,3 +12,4 @@ Project Outputs for LearningStand
 DebugConfig
 Listings
 Objects
+RTE/
