@@ -8,8 +8,8 @@
   *          STM32F072RBT6 в среде разработки Keil uVision 5.
   *          Подключение библиотек поддержки МК STM32F072RBT6 осуществляется
   *          средствами IDE Keil через Run-Time Enviroment (RTE).
-  *          Программа производит подсчет количества нажатий на кнопку SB1.
-  *          Количество нажатий выводится на светодиоды LED1-LED16 в двоичном коде.
+  *          В верхнем положении ключа SW1 включается светодиод LED16,
+  *          в нижнем светодиод LED16 выключается.
   *          Программа работает в режиме 0 учебного стенда (S1 = 0, S2 = 0).
   ******************************************************************************
   */
@@ -33,14 +33,12 @@ void led_init(void)
     /* Включение тактирования порта C */
     RCC->AHBENR = RCC->AHBENR | RCC_AHBENR_GPIOCEN;
 
-    /* Настройка на вывод линий PC0 - PC15 (LED1 - LED16) */
+    /* Настройка на вывод линий PC0 - PC11 (LED1 - LED12) */
     GPIOC->MODER = GPIOC->MODER |
         (GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 |
          GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 |
          GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0 |
-         GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0 |
-         GPIO_MODER_MODER12_0 | GPIO_MODER_MODER13_0 | GPIO_MODER_MODER14_0 |
-         GPIO_MODER_MODER15_0);
+         GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0);
 }
 
 /* Функция установки состояния светодиодов */
@@ -51,11 +49,11 @@ void led_set(uint16_t led)
     GPIOC->ODR = ~led;
 }
 
-/* Функция инициализации кнопки SB1 */
-void sb1_init(void)
+/* Функция инициализации кнопки SB3 */
+void sb3_init(void)
 {
-    /* Включение подтягивающих резисторов PB4 (SB1) */
-    GPIOB->PUPDR = GPIOB->PUPDR | GPIO_PUPDR_PUPDR4_0;
+    /* Включение подтягивающих резисторов PB6 (SB3) */
+    GPIOB->PUPDR = GPIOB->PUPDR | GPIO_PUPDR_PUPDR6_0;
 }
 
 /* Перечисление с состояниями кнопки */
@@ -64,8 +62,8 @@ typedef enum {
     SB_UNPRESSED    /* Кнопка отжата */
 } sb_state_t;
 
-/* Функция получения состояния кнопки SB1 с антидребезгом */
-sb_state_t sb1_get_state(void)
+/* Функция получения состояния кнопки SB3 с антидребезгом */
+sb_state_t sb3_get_state(void)
 {
     /* Здесь предложен следующий алгоритм антидребезга:
        В переменную pin_state через некоторый интервал 
@@ -89,40 +87,77 @@ sb_state_t sb1_get_state(void)
     /* Программная задержка */
     software_delay(100);
 
-    /* Чтение состояния кнопки SB1 */
-    uint16_t pin = (GPIOB->IDR >> 4) & 1;
+    /* Чтение состояния кнопки SB3 */
+    uint16_t pin = (GPIOB->IDR >> 6) & 1;
 
     /* Сохранение нового состояния в переменную pin_state */
     pin_state = (pin_state << 1) | pin;
 
-    /* Если 16 раз подряд сотояние SB1 было 0, то кнопка нажата */
+    /* Если 16 раз подряд сотояние SB3 было 0, то кнопка нажата */
     if (pin_state == 0x0000)
         return SB_PRESSED;
     else
         return SB_UNPRESSED;
 }
 
+/* Инициализация потенциометров */
+void pot_init(void)
+{
+    /* Включение тактирования порта A */
+    RCC->AHBENR = RCC->AHBENR | RCC_AHBENR_GPIOAEN;
+    /* Включение тактирования АЦП */
+    RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
+
+    /* Настройка линий PA0 (POT1) и PA1 (POT2) на аналоговый режим  */
+    GPIOA->MODER |= GPIO_MODER_MODER0 | GPIO_MODER_MODER1;
+
+    /* Включение АЦП */
+    ADC1->CR |= ADC_CR_ADEN;
+}
+
+/* Перечисление с номером потенциометра */
+typedef enum {
+    POT1 = ADC_CHSELR_CHSEL0,
+    POT2 = ADC_CHSELR_CHSEL1,
+} pot_t;
+
+/* Функция чтения состояния потенциометра */
+uint16_t pot_get_data(pot_t pot)
+{
+    /* Выбор номера канала для следующего преобразования.
+       Нулевой канал АЦП подключен к линии PA0. */
+    ADC1->CHSELR = pot;
+    /* Программный запуск преобразования */
+    ADC1->CR |= ADC_CR_ADSTART;
+    /* Ожидание установки флага End of Conversion (EOC) в 1 */
+    while(!(ADC1->ISR & ADC_ISR_EOC_Msk));
+    /* Возвращение результата преобразования */
+    return ADC1->DR;
+}
+
 /* Функция main - точка входа в программу */
 int main(void)
 {
-    /* Инициализации светодиодов */
+    /* Инициализация светодиодов */
     led_init();
-    /* Инициализация кнопки SB1 */
-    sb1_init();
-
-    /* Объявление переменной счетчика нажатий. Начально значение - 0 */
-    uint16_t cnt = 0;
+    /* Инициализация кнопки SB3 */
+    sb3_init();
+    /* Инициализация потенциометров */
+    pot_init();
 
     /* Бесконечный цикл */
     while (1)
     {
-        /* Проверка состояния кнопки */
-        if (sb1_get_state() == SB_PRESSED)
+        /* Чтение состояния SB3 */
+        if (sb3_get_state() == SB_PRESSED)
         {
-            /* Если кнопка нажата, то инкрементируем счетчик */
-            cnt++;
-            /* Передаем обновление значение счетчика на светодиоды */
-            led_set(cnt);
+            /* Если нажата, то читаем POT1 и выводим на светодиоды */
+            led_set(pot_get_data(POT1));
+        }
+        else
+        {
+            /* В противном случаем, то читаем POT2 и выводим на светодиоды */
+            led_set(pot_get_data(POT2));
         }
     }
 }
