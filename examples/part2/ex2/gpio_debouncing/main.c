@@ -46,22 +46,27 @@ void led_init(void)
 /* Функция установки состояния светодиодов */
 void led_set(uint16_t led)
 {
-    /* Так как 0 - светодиод включен, то инвертируем аргумент led
-       до записи в регистр ODR */
-    GPIOC->ODR = ~led;
+    /* Записываем в регистра данных порта C новое состояние светодиодов.
+       Номер бита соответствует номер светодиода: бит 0 - LED1, бит 1 - LED2 и
+       так далее */
+    GPIOC->ODR = led;
 }
 
 /* Функция инициализации кнопки SB1 */
 void sb1_init(void)
 {
+    /* Включение тактирования порта B */
+    RCC->AHBENR = RCC->AHBENR | RCC_AHBENR_GPIOBEN;
+
     /* Включение подтягивающих резисторов PB4 (SB1) */
     GPIOB->PUPDR = GPIOB->PUPDR | GPIO_PUPDR_PUPDR4_0;
 }
 
 /* Перечисление с состояниями кнопки */
 typedef enum {
-    SB_PRESSED,     /* Кнопка нажата */
-    SB_UNPRESSED    /* Кнопка отжата */
+    SB_PRESSED_SHORT,   /* Кнопка нажата - короткое нажатие */
+    SB_PRESSED_LONG,    /* Кнопка нажата - длительное нажатие */
+    SB_UNPRESSED,       /* Кнопка отжата */
 } sb_state_t;
 
 /* Функция получения состояния кнопки SB1 с антидребезгом */
@@ -85,9 +90,12 @@ sb_state_t sb1_get_state(void)
     /* Объявление статической переменной, которая сохраняет свое значение
        между вызовами функции */
     static uint16_t pin_state = 0xFFFF;
+    static sb_state_t prev_state = SB_UNPRESSED;
+    sb_state_t new_state;
+    sb_state_t return_state;
 
     /* Программная задержка */
-    software_delay(100);
+    software_delay(1000);
 
     /* Чтение состояния кнопки SB1 */
     uint16_t pin = (GPIOB->IDR >> 4) & 1;
@@ -95,11 +103,33 @@ sb_state_t sb1_get_state(void)
     /* Сохранение нового состояния в переменную pin_state */
     pin_state = (pin_state << 1) | pin;
 
-    /* Если 16 раз подряд сотояние SB1 было 0, то кнопка нажата */
+    /* Если 16 раз подряд состояние SB1 было 0, то кнопка нажата */
     if (pin_state == 0x0000)
-        return SB_PRESSED;
+    {
+        new_state = SB_PRESSED_SHORT;
+    }
     else
-        return SB_UNPRESSED;
+    {
+        new_state = SB_UNPRESSED;
+    }
+
+    /* Определение возвращаемого состояния кнопки */
+    if (new_state == SB_PRESSED_SHORT && prev_state == SB_UNPRESSED)
+    {
+        return_state = SB_PRESSED_SHORT;
+    }
+    else if (new_state == SB_PRESSED_SHORT && prev_state == SB_PRESSED_SHORT)
+    {
+        return_state = SB_PRESSED_LONG;
+    }
+    else
+    {
+        return_state = SB_UNPRESSED;
+    }
+
+    prev_state = new_state;
+
+    return return_state;
 }
 
 /* Функция main - точка входа в программу */
@@ -110,14 +140,14 @@ int main(void)
     /* Инициализация кнопки SB1 */
     sb1_init();
 
-    /* Объявление переменной счетчика нажатий. Начально значение - 0 */
+    /* Объявление переменной счетчика нажатий. Начальное значение - 0 */
     uint16_t cnt = 0;
 
     /* Бесконечный цикл */
     while (1)
     {
         /* Проверка состояния кнопки */
-        if (sb1_get_state() == SB_PRESSED)
+        if (sb1_get_state() == SB_PRESSED_SHORT)
         {
             /* Если кнопка нажата, то инкрементируем счетчик */
             cnt++;

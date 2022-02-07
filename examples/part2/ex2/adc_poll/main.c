@@ -44,25 +44,28 @@ void led_init(void)
 /* Функция установки состояния светодиодов */
 void led_set(uint16_t led)
 {
-    /* Так как 0 - светодиод включен, то инвертируем аргумент led
-       до записи в регистр ODR */
-    GPIOC->ODR = ~led;
+    /* Включение светодиодов*/
+    GPIOC->ODR = led;
 }
 
 /* Функция инициализации кнопки SB3 */
 void sb3_init(void)
 {
+    /* Включение тактирования порта B */
+    RCC->AHBENR = RCC->AHBENR | RCC_AHBENR_GPIOBEN;
+
     /* Включение подтягивающих резисторов PB6 (SB3) */
     GPIOB->PUPDR = GPIOB->PUPDR | GPIO_PUPDR_PUPDR6_0;
 }
 
 /* Перечисление с состояниями кнопки */
 typedef enum {
-    SB_PRESSED,     /* Кнопка нажата */
-    SB_UNPRESSED    /* Кнопка отжата */
+    SB_PRESSED_SHORT,   /* Кнопка нажата - короткое нажатие */
+    SB_PRESSED_LONG,    /* Кнопка нажата - длительное нажатие */
+    SB_UNPRESSED,       /* Кнопка отжата */
 } sb_state_t;
 
-/* Функция получения состояния кнопки SB3 с антидребезгом */
+/* Функция получения состояния кнопки SB1 с антидребезгом */
 sb_state_t sb3_get_state(void)
 {
     /* Здесь предложен следующий алгоритм антидребезга:
@@ -83,9 +86,12 @@ sb_state_t sb3_get_state(void)
     /* Объявление статической переменной, которая сохраняет свое значение
        между вызовами функции */
     static uint16_t pin_state = 0xFFFF;
+    static sb_state_t prev_state = SB_UNPRESSED;
+    sb_state_t new_state;
+    sb_state_t return_state;
 
     /* Программная задержка */
-    software_delay(100);
+    software_delay(1000);
 
     /* Чтение состояния кнопки SB3 */
     uint16_t pin = (GPIOB->IDR >> 6) & 1;
@@ -93,12 +99,35 @@ sb_state_t sb3_get_state(void)
     /* Сохранение нового состояния в переменную pin_state */
     pin_state = (pin_state << 1) | pin;
 
-    /* Если 16 раз подряд сотояние SB3 было 0, то кнопка нажата */
+    /* Если 16 раз подряд состояние SB3 было 0, то кнопка нажата */
     if (pin_state == 0x0000)
-        return SB_PRESSED;
+    {
+        new_state = SB_PRESSED_SHORT;
+    }
     else
-        return SB_UNPRESSED;
+    {
+        new_state = SB_UNPRESSED;
+    }
+
+    /* Определение возвращаемого состояния кнопки */
+    if (new_state == SB_PRESSED_SHORT && prev_state == SB_UNPRESSED)
+    {
+        return_state = SB_PRESSED_SHORT;
+    }
+    else if (new_state == SB_PRESSED_SHORT && prev_state == SB_PRESSED_SHORT)
+    {
+        return_state = SB_PRESSED_LONG;
+    }
+    else
+    {
+        return_state = SB_UNPRESSED;
+    }
+
+    prev_state = new_state;
+
+    return return_state;
 }
+
 
 /* Инициализация потенциометров */
 void pot_init(void)
@@ -117,15 +146,14 @@ void pot_init(void)
 
 /* Перечисление с номером потенциометра */
 typedef enum {
-    POT1 = ADC_CHSELR_CHSEL0,
-    POT2 = ADC_CHSELR_CHSEL1,
+    POT1 = ADC_CHSELR_CHSEL0, /* POT1 -> PA0 -> ADC Channel 0 */
+    POT2 = ADC_CHSELR_CHSEL1, /* POT2 -> PA1 -> ADC Channel 1 */
 } pot_t;
 
 /* Функция чтения состояния потенциометра */
 uint16_t pot_get_data(pot_t pot)
 {
-    /* Выбор номера канала для следующего преобразования.
-       Нулевой канал АЦП подключен к линии PA0. */
+    /* Выбор номера канала для следующего преобразования */
     ADC1->CHSELR = pot;
     /* Программный запуск преобразования */
     ADC1->CR |= ADC_CR_ADSTART;
@@ -149,7 +177,7 @@ int main(void)
     while (1)
     {
         /* Чтение состояния SB3 */
-        if (sb3_get_state() == SB_PRESSED)
+        if (sb3_get_state() == SB_PRESSED_LONG)
         {
             /* Если нажата, то читаем POT1 и выводим на светодиоды */
             led_set(pot_get_data(POT1));

@@ -40,7 +40,7 @@ int main(void)
     GPIOC_MODER = GPIOC_MODER | 0x00000001;
 
     /* Включить светодиод PC0 (LED1). */
-    GPIOC_ODR = GPIOC_ODR & 0xFFFFFFFE;
+    GPIOC_ODR = GPIOC_ODR | 0x00000001;
 
     /* Бесконечный цикл. */
     while (1)
