@@ -42,7 +42,7 @@ int main(void)
          GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0 |
          GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0);
 
-    /* Включение подтягивающих резисторов PB6 (SB3) и PB7 (SB4). */
+    /* Включение подтягивающих резисторов PB6 (SB3) и PB7 (SB4) */
     GPIOB->PUPDR = GPIOB->PUPDR |
         (GPIO_PUPDR_PUPDR6_0 | GPIO_PUPDR_PUPDR7_0);
 
@@ -57,8 +57,8 @@ int main(void)
     {
         /* Объявление переменной sb3 и чтение состояние линии PB6 (SB3) */
         int sb3 = GPIOB->IDR & (1 << 6);
-        /* Объявление переменной sb3 и чтение состояние линии PB7 (SB4)) */
-        int sb4 = GPIOB->IDR & (1 << 5);
+        /* Объявление переменной sb4 и чтение состояние линии PB7 (SB4)) */
+        int sb4 = GPIOB->IDR & (1 << 7);
 
         if (sb3 == 0)
         {
@@ -89,7 +89,7 @@ int main(void)
         else
         {
             /* Выключить светодиоды PC0 - PC11 (LED1 - LED12) */
-            GPIOC->ODR |= 0x0FFF;
+            GPIOC->ODR &= ~0x0FFF;
         }
     }
 }
