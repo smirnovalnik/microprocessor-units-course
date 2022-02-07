@@ -140,7 +140,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>ST-LINKIII-KEIL_SWO</Key>
-          <Name>-U50FF6B067788545437231167 -O10446 -SF10000 -C0 -A0 -I0 -HNlocalhost -HP7184 -P1 -N00("ARM CoreSight SW-DP (ARM Core") -D00(0BB11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO31 -FD20000000 -FC1000 -FN1 -FF0STM32F0xx_128_2K.FLM -FS08000000 -FL020000 -FP0($$Device:STM32F072RBTx$CMSIS\Flash\STM32F0xx_128_2K.FLM)</Name>
+          <Name>-U50FF6B067788545437231167 -O10446 -SF10000 -C0 -A0 -I0 -HNlocalhost -HP7184 -P1 -N00("ARM CoreSight SW-DP (ARM Core") -D00(0BB11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8004 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO31 -FD20000000 -FC1000 -FN1 -FF0STM32F0xx_128_2K.FLM -FS08000000 -FL020000 -FP0($$Device:STM32F072RBTx$CMSIS\Flash\STM32F0xx_128_2K.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -161,7 +161,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>\Mac\Dropbox\Development\microprocessor-units-course\examples\part2\ex3\gpio_interrupt\\Mac\Dropbox\Development\microprocessor-units-course\examples\part2\ex3\gpio_interrupt\main.c</Filename>
+          <Filename>\\Mac\Dropbox\Mac\Dropbox\Development\microprocessor-units-course\examples\part2\ex3\gpio_interrupt\Mac\Dropbox\Development\microprocessor-units-course\examples\part2\ex3\gpio_interrupt\main.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\uvision_c\main.c\112</Expression>
         </Bp>

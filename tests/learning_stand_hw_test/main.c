@@ -27,14 +27,14 @@ void test_pots(void)
     RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
 
     /* Настройка на вывод */
-    GPIOC->MODER |= 
+    GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0 |
         GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 |
         GPIO_MODER_MODER8_0 | GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0 |
         GPIO_MODER_MODER12_0 | GPIO_MODER_MODER13_0 | GPIO_MODER_MODER14_0 | GPIO_MODER_MODER15_0;
 
     /* Настройка на вывод */
-    GPIOA->MODER |= 
+    GPIOA->MODER |=
         GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0;
 
     GPIOA->MODER |= GPIO_MODER_MODER0 | GPIO_MODER_MODER1;
@@ -59,7 +59,7 @@ void test_pots(void)
                 led_ch0 += 1 << i;
             }
         }
-        
+
         ADC1->CHSELR = ADC_CHSELR_CHSEL1;
         ADC1->CR |= ADC_CR_ADSTART;
         while(!(ADC1->ISR & ADC_ISR_EOC_Msk));
@@ -73,7 +73,7 @@ void test_pots(void)
                 led_ch1 += 1 << i;
             }
         }
-        
+
         GPIOC->ODR = led_ch0 | (led_ch1 << 8);
     }
 }
@@ -85,14 +85,14 @@ void test_leds(void)
     RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
 
     /* Настройка на вывод */
-    GPIOC->MODER |= 
+    GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0 |
         GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 |
         GPIO_MODER_MODER8_0 | GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0 |
         GPIO_MODER_MODER12_0 | GPIO_MODER_MODER13_0 | GPIO_MODER_MODER14_0 | GPIO_MODER_MODER15_0;
 
     /* Настройка на вывод */
-    GPIOA->MODER |= 
+    GPIOA->MODER |=
         GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0;
 
     for (;;)
@@ -103,7 +103,7 @@ void test_leds(void)
         for (uint32_t i = 0; i < 16; i++)
         {
             GPIOC->ODR = (1 << i);
-            systick_delay(100000);
+            systick_delay(100);
         }
 
         /* Зеленые */
@@ -112,7 +112,7 @@ void test_leds(void)
         for (uint32_t i = 0; i < 16; i++)
         {
             GPIOC->ODR = (1 << i);
-            systick_delay(100000);
+            systick_delay(100);
         }
 
         /* Синие */
@@ -121,16 +121,16 @@ void test_leds(void)
         for (uint32_t i = 0; i < 16; i++)
         {
             GPIOC->ODR = (1 << i);
-            systick_delay(100000);
+            systick_delay(100);
         }
-        
+
         /* Белый */
         GPIOA->ODR = LED_WHITE_PIN;
         GPIOC->ODR = 0;
         for (uint32_t i = 0; i < 16; i++)
         {
             GPIOC->ODR = (1 << i);
-            systick_delay(100000);
+            systick_delay(100);
         }
     }
 }
@@ -142,7 +142,7 @@ void test_sw(void)
     RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
 
     /* Настройка на вывод */
-    GPIOC->MODER |= 
+    GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0;
 
     /* Линия PA14 (SW4) после сброса используется как SWCLK в режиме AF с pull-down.
@@ -186,7 +186,7 @@ void test_sb(void)
     RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
 
     /* Настройка на вывод */
-    GPIOC->MODER |= 
+    GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0;
 
     /* Включение подтягивающих резисторов */
@@ -224,18 +224,18 @@ void test_keyboard(void)
     RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
 
     /* Настройка на вывод */
-    GPIOC->MODER |= 
+    GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0 |
         GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 |
         GPIO_MODER_MODER8_0 | GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0 |
         GPIO_MODER_MODER12_0 | GPIO_MODER_MODER13_0 | GPIO_MODER_MODER14_0 | GPIO_MODER_MODER15_0;
 
     /* Настройка на вывод */
-    GPIOA->MODER |= 
+    GPIOA->MODER |=
         GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0;
 
     /* R0, R1, R2, R3 */
-    GPIOB->MODER |= 
+    GPIOB->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0;
 
     /* C0, C1, C2, C3 pull down */
@@ -312,7 +312,7 @@ void test_keyboard(void)
             GPIOC->ODR |= LED11_PIN;
         else
             GPIOC->ODR &= ~LED11_PIN;
-        
+
         GPIOB->ODR = R3_PIN;
         systick_delay(10);
         if (GPIOB->IDR & C0_PIN)
@@ -352,7 +352,7 @@ uint8_t decoder_7seg(char ch, uint8_t dot)
         0b01111111,
         0b01101111
     };
-    
+
     if (ch >= '0' && ch <= '9')
     {
         return ch_code[ch - '0'] | (dot ? 0x80 : 0x00);
@@ -370,34 +370,34 @@ void test_7seg()
     RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
 
     /* Настройка на вывод */
-    GPIOC->MODER |= 
+    GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0 |
         GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0;
 
     /* Настройка на вывод D1, D2, D3, D4 */
-    GPIOC->MODER |= 
+    GPIOC->MODER |=
         GPIO_MODER_MODER8_0 | GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0;
 
     for(;;)
     {
         for (uint32_t i = 0; i < 10; i++)
         {
-            systick_delay(500000);
+            systick_delay(500);
             GPIOC->ODR = decoder_7seg((i%10) + '0', i % 2) | D1_PIN;
         }
         for (uint32_t i = 0; i < 10; i++)
         {
-            systick_delay(500000);
+            systick_delay(500);
             GPIOC->ODR = decoder_7seg((i%10) + '0', i % 2) | D2_PIN;
         }
         for (uint32_t i = 0; i < 10; i++)
         {
-            systick_delay(500000);
+            systick_delay(500);
             GPIOC->ODR = decoder_7seg((i%10) + '0', i % 2) | D3_PIN;
         }
         for (uint32_t i = 0; i < 10; i++)
         {
-            systick_delay(500000);
+            systick_delay(500);
             GPIOC->ODR = decoder_7seg((i%10) + '0', i % 2) | D4_PIN;
         }
     }
@@ -408,26 +408,26 @@ void test_lcd()
     RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Включить тактирование прота A
     RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Включить тактирование порта B
     RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
-    
-    GPIOC->MODER |= 
+
+    GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0 |
         GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0;
-    
-    GPIOC->MODER |= 
+
+    GPIOC->MODER |=
         GPIO_MODER_MODER12_0 | GPIO_MODER_MODER13_0 | GPIO_MODER_MODER14_0;
-    
-    init_disp();
-    disp_on();
-    
+
+    disp_init();
+    disp_turn_on();
+
     uint32_t i = 0;
     char buf[100];
     for (;;)
     {
         i++;
-        systick_delay(1000000);
-        
+        systick_delay(1000);
+
         snprintf(buf, 100, "%d", i);
-        put_str(buf, 0, 0);
+        disp_put_str(buf, 0, 0);
     }
 }
 
@@ -437,14 +437,14 @@ void usart_init(void)
     RCC->AHBENR |= RCC_AHBENR_GPIOAEN;      // Включить тактирование порта A
 
     // Включить режим альтернативной функции 1 на линиях 2 и 3
-    GPIOA->AFR[0] |= ((0x01 << GPIO_AFRL_AFRL2_Pos)) | (0x01 << GPIO_AFRL_AFRL3_Pos); 
+    GPIOA->AFR[0] |= ((0x01 << GPIO_AFRL_AFRL2_Pos)) | (0x01 << GPIO_AFRL_AFRL3_Pos);
 
     // Включить режим альтернативной функции на линиях PA2 и PA3
-    GPIOA->MODER |= 
+    GPIOA->MODER |=
         GPIO_MODER_MODER2_1 | GPIO_MODER_MODER3_1;
 
     USART2->BRR = 1666;                 // 2 * 8000000 / 9600 = 1666
-    USART2->CR1 |= USART_CR1_OVER8;     // 
+    USART2->CR1 |= USART_CR1_OVER8;     //
     USART2->CR1 |= USART_CR1_TE;        // Включаем TX
     USART2->CR1 |= USART_CR1_RE;        // Включаем RX
     USART2->CR1 |= USART_CR1_UE;        // Включаем USART
@@ -466,7 +466,7 @@ int usart_receive(void)
 int main(void)
 {
     usart_init();
-    systick_init(800);
+    systick_init(8000);
 
     printf("Test\n");
     printf("Choose test number\n");
@@ -511,7 +511,7 @@ int main(void)
 
     for(;;)
     {
-        
+
     }
 }
 
