@@ -80,6 +80,10 @@ Keil MDK Lite Edition изначально ничего не знает о ми�
 
 ![ ](./img/uvision_stlink_debug.gif)
 
+### Исправление ошибки загрузки программы в Keil uVision4
+
+![ ](./img/uvision_flash.gif)
+
 
 ### vscode gcc
 
