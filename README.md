@@ -76,7 +76,7 @@ Keil MDK Lite Edition изначально ничего не знает о ми�
 
 ![ ](./img/uvision_project_creation.gif)
 
-### Настройка подклчюения ST-Link в Keil uVision5
+### Настройка подключения ST-Link в Keil uVision5
 
 ![ ](./img/uvision_stlink_debug.gif)
 
