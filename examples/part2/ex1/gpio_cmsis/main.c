@@ -72,22 +72,25 @@ int main(void)
        AHB peripheral clock enable register (RCC_AHBENR) записать 1
        в позицию 19 (в девятнадцатый бит IOPCEN).
        В начале читается состояние регистра (RCC->AHBENR), затем
-       с помощью операции побитового ИЛИ (оператор |) устанавливается
-       в 1 бит номер 19 (макроопределение RCC_AHBENR_GPIOCEN) и результат
+       с помощью операции побитового ИЛИ (оператор | в языке  С) устанавливается
+       в 1 бит номер 19 (число 0x00080000 - в этом числе 1 в 19 бите), и результат
        записывается вновь в регистр RCC->AHBENR.
-       Эту строку можно написать аналогичный образом:
-       RCC->AHBENR = RCC->AHBENR | 0x00080000;
+       Эту строку можно написать аналогичным образом:
+       RCC->AHBENR = RCC->AHBENR | RCC_AHBENR_GPIOCEN;
+       Макроопределение RCC_AHBENR_GPIOCEN находится файле stm32f0xx.h и означает также 0x00080000.
+       Такие макроопределения позволяют перейти от чисел к осмысленным названиям.
        */
-    RCC->AHBENR = RCC->AHBENR | RCC_AHBENR_GPIOCEN;
+    RCC->AHBENR = RCC->AHBENR | 0x00080000;
 
     /* Настройка на вывод линии PC0 (LED1).
        Порты по сбросу настроены на ввод.
        Согласно Reference Manual для перевода линии PC0 в режим вывода
        (Push/Pull) необходимо установить бит 0 в 1 в регистре
-       GPIO port mode register (MODER).
+       GPIO port mode register (MODER) (маска 0x00000001).
        Эту строку можно написать аналогичный образом:
-       GPIOC->MODER = GPIOC->MODER | 0x00000001;*/
-    GPIOC->MODER = GPIOC->MODER | GPIO_MODER_MODER0_0;
+       GPIOC->MODER = GPIOC->MODER | GPIO_MODER_MODER0_0;
+       Макроопределение GPIO_MODER_MODER0_0 находится файле stm32f0xx.h и означает также 0x0000000й */
+    GPIOC->MODER = GPIOC->MODER | 0x00000001;
 
     /* Включить светодиод PC0 (LED1).
        Согласно Reference manual для управления портом вывода необходимо
