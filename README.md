@@ -59,7 +59,13 @@
 
 Если вы не знакомы с `git`, то можете периодически скачивать архив проекта по указанной ниже иструкции.
 
-### Загрузка проекта в виде zip архива
+### Клонирование проекта
+
+```bash
+git clone https://github.com/smirnovalnik/microprocessor-units-course.git
+```
+
+### Загрузка репозитория в виде zip архива
 
 ![ ](./img/github_download.gif)
 
