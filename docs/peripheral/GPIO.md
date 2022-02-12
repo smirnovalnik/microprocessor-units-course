@@ -23,7 +23,7 @@
 
 GPIO port mode register (`GPIOx->MODER`, x = A-F)
 
-![MODER](img/GPIO_MODER.png)
+![MODER](../../img/GPIO_MODER.png)
 
 Смещение адреса: `0x00`
 
@@ -45,7 +45,7 @@ GPIO port mode register (`GPIOx->MODER`, x = A-F)
 
 GPIO port output type register (`GPIOx->OTYPER`, x = A-F)
 
-![OTYPER](img/GPIO_OTYPER.png)
+![OTYPER](../../img/GPIO_OTYPER.png)
 
 Смещение адреса: `0x04`
 
@@ -64,7 +64,7 @@ GPIO port output type register (`GPIOx->OTYPER`, x = A-F)
 
 GPIO port output speed register (`GPIOx->OSPEEDR`,` x = A..F)
 
-![OSPEEDR](img/GPIO_OSPEEDR.png)
+![OSPEEDR](../../img/GPIO_OSPEEDR.png)
 
 Смещение адреса: `0x08`
 
@@ -87,7 +87,7 @@ GPIO port output speed register (`GPIOx->OSPEEDR`,` x = A..F)
 
 GPIO port pull-up/pull-down register (`GPIOx->PUPDR`, x = A-F)
 
-![PUPDR](img/GPIO_PUPDR.png)
+![PUPDR](../../img/GPIO_PUPDR.png)
 
 Смещение адреса: `0x0С`
 
@@ -109,7 +109,7 @@ GPIO port pull-up/pull-down register (`GPIOx->PUPDR`, x = A-F)
 
 GPIO port input data register (`GPIOx->IDR`, x = A-F)
 
-![IDR](img/GPIO_IDR.png)
+![IDR](../../img/GPIO_IDR.png)
 
 Смещение адреса: `0x10`
 
@@ -123,7 +123,7 @@ GPIO port input data register (`GPIOx->IDR`, x = A-F)
 
 GPIO port output data register (`GPIOx->ODR`, x = A-F)
 
-![ODR](img/GPIO_ODR.png)
+![ODR](../../img/GPIO_ODR.png)
 
 Смещение адреса: `0x14`
 
@@ -139,7 +139,7 @@ GPIO port output data register (`GPIOx->ODR`, x = A-F)
 
 GPIO port bit set/reset register (`GPIOx->BSRR`, x = A..F)
 
-![OTYPER](img/GPIO_BSRR.png)
+![OTYPER](../../img/GPIO_BSRR.png)
 
 Смещение адреса: `0x18`
 
@@ -163,7 +163,7 @@ GPIO port bit set/reset register (`GPIOx->BSRR`, x = A..F)
 
 GPIO port configuration lock register (`GPIOx->LCKR`, x = A..B)
 
-![LCKR](img/GPIO_LCKR.png)
+![LCKR](../../img/GPIO_LCKR.png)
 
 Регистр используется для блокировки конфигурации линий порта. Значение битов [15:0] используется для выбора линии порта, конфигурация которого будет заблокирована. После определенной последовательности записи в бит 16 (LCKK) конфигурации линии порта будут заблокированы и не могут быть изменены до следующего сброса МК или порта.
 
@@ -196,7 +196,7 @@ GPIO port configuration lock register (`GPIOx->LCKR`, x = A..B)
 
 GPIO alternate function low register (`GPIOx->AFRL`, x = A..F)
 
-![AFRL](img/GPIO_AFRL.png)
+![AFRL](../../img/GPIO_AFRL.png)
 
 Смещение адреса: `0x20`
 
@@ -220,7 +220,7 @@ GPIO alternate function low register (`GPIOx->AFRL`, x = A..F)
 
 GPIO alternate function high register (`GPIOx->AFRH`, x = A..F)
 
-![AFRH](img/GPIO_AFRH.png)
+![AFRH](../../img/GPIO_AFRH.png)
 
 Смещение адреса: `0x24`
 
@@ -244,7 +244,7 @@ GPIO alternate function high register (`GPIOx->AFRH`, x = A..F)
 
 GPIO port bit reset register (`GPIOx->BRR`, x =A..F)
 
-![BRR](img/GPIO_BRR.png)
+![BRR](../../img/GPIO_BRR.png)
 
 Смещение адреса: `0x28`
 
