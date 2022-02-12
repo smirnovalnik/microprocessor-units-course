@@ -672,15 +672,15 @@ PORT_SetBits(MDR_PORTC, PORT_Pin_0); /* Установить 1 в PC0 */
 ## Обработка прерываний в Cortex-M3
 
 Файл startup_MDR32F9Qx.s:
-``asm
+```
 ...
 DCD     Timer1_IRQHandler          ; IRQ14
 DCD     ADC_IRQHandler             ; IRQ17
 ...
 ```
 
-```c
 Файлы разработчика, например, main.c:
+```c
 /* Обработка прерывания по Timer1 */
 void Timer1_IRQHandler(void)
 {
