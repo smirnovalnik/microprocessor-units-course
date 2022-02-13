@@ -307,4 +307,4 @@ Keil MDK Lite Edition изначально ничего не знает о ми�
 
 - Для подсветки синтаксиса ассемблера - [Arm Assembly](https://marketplace.visualstudio.com/items?itemName=dan-c-underwood.arm)
 
-- Для подсветки синтаксиса скрипта компоновщика [LinkerScript](https://marketplace.visualstudio.com/items?itemName=ZixuanWang.linkerscript)
+- Для подсветки синтаксиса скрипта компоновщика - [LinkerScript](https://marketplace.visualstudio.com/items?itemName=ZixuanWang.linkerscript)
