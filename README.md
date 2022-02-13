@@ -2,7 +2,7 @@
 
 Кафедра [Промышленная электроника](https://mpei.ru/Structure/Universe/ire/structure/ie/Pages/default.aspx) [НИУ МЭИ](https://mpei.ru/).
 
-![ ](img/mpei_logo.png) ![ ](img/logo_ie.jpg)
+![ ](img/mpei_logo.jpg) ![ ](img/logo_ie.jpg)
 
 ## Оглавление
 
