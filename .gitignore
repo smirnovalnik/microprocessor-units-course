@@ -1,7 +1,17 @@
-__Previews/
-History/
-build/
+__Previews
+History
+*.PcbDoc.htm
+build
 *.bin
 *.exe
 .DS_Store
 *.o
+Project Outputs for LearningStand
+*.uvguix.*
+*.scvd
+DebugConfig
+Listings
+Objects
+RTE/
+.cortex-debug.peripherals.state.json
+.cortex-debug.registers.state.json
