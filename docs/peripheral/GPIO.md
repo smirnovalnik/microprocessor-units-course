@@ -23,14 +23,14 @@
 
 GPIO port mode register (`GPIOx->MODER`, x = A-F)
 
-![MODER](../../img/GPIO_MODER.png)
-
 Смещение адреса: `0x00`
 
 Значение после сброса:
 
 - для порта A: `0x2800 0000`
 - для остальных портов: `0x0000 0000`
+
+![MODER](../../img/GPIO_MODER.png)
 
 Пара бит `MODERy[1:0]` задает режим линии `y` (0-15) порта `x` (A-F). Биты устанавливаются и сбрасываются программно.
 
@@ -45,11 +45,11 @@ GPIO port mode register (`GPIOx->MODER`, x = A-F)
 
 GPIO port output type register (`GPIOx->OTYPER`, x = A-F)
 
-![OTYPER](../../img/GPIO_OTYPER.png)
-
 Смещение адреса: `0x04`
 
 Значение после сброса: `0x0000 0000`
+
+![OTYPER](../../img/GPIO_OTYPER.png)
 
 Биты 31-16: Зарезервированы
 
@@ -64,14 +64,14 @@ GPIO port output type register (`GPIOx->OTYPER`, x = A-F)
 
 GPIO port output speed register (`GPIOx->OSPEEDR`, x = A..F)
 
-![OSPEEDR](../../img/GPIO_OSPEEDR.png)
-
 Смещение адреса: `0x08`
 
 Значение после сброса:
 
 - для порта A: `0x0С00 0000`
 - для остальных портов: `0x0000 0000`
+
+![OSPEEDR](../../img/GPIO_OSPEEDR.png)
 
 Пара бит `OSPEEDRy[1:0]` задает скорость линии `y` (0-15) порта `x` (A-F). Биты устанавливаются и сбрасываются программно.
 
@@ -87,14 +87,14 @@ GPIO port output speed register (`GPIOx->OSPEEDR`, x = A..F)
 
 GPIO port pull-up/pull-down register (`GPIOx->PUPDR`, x = A-F)
 
-![PUPDR](../../img/GPIO_PUPDR.png)
-
 Смещение адреса: `0x0С`
 
 Значение после сброса:
 
 - для порта A: `0x2400 0000`
 - для остальных портов: `0x0000 0000`
+
+![PUPDR](../../img/GPIO_PUPDR.png)
 
 Пара бит `PUPDRy[1:0]` задает режим подтягивающих резисторов линии `y` (0-15) порта `x` (A-F). Биты устанавливаются и сбрасываются программно.
 
@@ -109,11 +109,11 @@ GPIO port pull-up/pull-down register (`GPIOx->PUPDR`, x = A-F)
 
 GPIO port input data register (`GPIOx->IDR`, x = A-F)
 
-![IDR](../../img/GPIO_IDR.png)
-
 Смещение адреса: `0x10`
 
 Значение после сброса : `0x0000 XXXX` (X - неопределенное значение)
+
+![IDR](../../img/GPIO_IDR.png)
 
 Биты 15-0 `IDRy`: Состояние входа линии `y` (0-15) порта `x` (A-F). Биты доступны только для чтения.
 
@@ -123,11 +123,11 @@ GPIO port input data register (`GPIOx->IDR`, x = A-F)
 
 GPIO port output data register (`GPIOx->ODR`, x = A-F)
 
-![ODR](../../img/GPIO_ODR.png)
-
 Смещение адреса: `0x14`
 
 Значение после сброса: `0x0000 0000`
+
+![ODR](../../img/GPIO_ODR.png)
 
 Биты 15-0 `ODRy`: Состояние выхода линии `y` (0-15) порта `x` (A-F). Биты устанавливаются и сбрасываются программно.
 
@@ -139,11 +139,11 @@ GPIO port output data register (`GPIOx->ODR`, x = A-F)
 
 GPIO port bit set/reset register (`GPIOx->BSRR`, x = A..F)
 
-![OTYPER](../../img/GPIO_BSRR.png)
-
 Смещение адреса: `0x18`
 
 Значение после сброса: `0x0000 0000`
+
+![OTYPER](../../img/GPIO_BSRR.png)
 
 Биты 31-16 `BRy`: Сброс бита линии `y` (0-15) порта `x` (A-F). Биты предназначены только для записи. Чтение битов вернет значение `0x0000`.
 
@@ -163,13 +163,13 @@ GPIO port bit set/reset register (`GPIOx->BSRR`, x = A..F)
 
 GPIO port configuration lock register (`GPIOx->LCKR`, x = A..B)
 
-![LCKR](../../img/GPIO_LCKR.png)
-
 Регистр используется для блокировки конфигурации линий порта. Значение битов [15:0] используется для выбора линии порта, конфигурация которого будет заблокирована. После определенной последовательности записи в бит 16 (`LCKK`) конфигурации линии порта будут заблокированы и не могут быть изменены до следующего сброса МК или порта.
 
 Смещение адреса: `0x1C`
 
 Значение после сброса: `0x0000 0000`
+
+![LCKR](../../img/GPIO_LCKR.png)
 
 Биты 31-17: Зарезервированы.
 
@@ -196,11 +196,11 @@ GPIO port configuration lock register (`GPIOx->LCKR`, x = A..B)
 
 GPIO alternate function low register (`GPIOx->AFRL`, x = A..F)
 
-![AFRL](../../img/GPIO_AFRL.png)
-
 Смещение адреса: `0x20`
 
 Значение после сброса: `0x0000 0000`
+
+![AFRL](../../img/GPIO_AFRL.png)
 
 Биты 31-0 `AFSELy[3:0]`: Выбор альтернативной функции линии `y` (0-7) порта `x` (A-F). Биты устанавливаются и сбрасываются программно.
 
@@ -244,13 +244,13 @@ GPIO alternate function high register (`GPIOx->AFRH`, x = A..F)
 
 GPIO port bit reset register (`GPIOx->BRR`, x =A..F)
 
-![BRR](../../img/GPIO_BRR.png)
-
 Смещение адреса: `0x28`
 
 Значение после сброса: `0x0000 0000`
 
-Биты 31-16: Зарезервированы
+![BRR](../../img/GPIO_BRR.png)
+
+Биты 31-16: Зарезервированы.
 
 Биты 15-0 `BRy`: Сброс бита линии `y` (0-15) порта `x` (A-F). Биты предназначены только для записи. Чтение битов вернет значение `0x0000`.
 
