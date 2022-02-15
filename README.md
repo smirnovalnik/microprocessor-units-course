@@ -132,7 +132,7 @@ git clone https://github.com/smirnovalnik/microprocessor-units-course.git
       - [ex4](./examples/part2/workshop/ex4) - пример решения практической задачи: _Бегущий огонь_
       - [ex5](./examples/part2/workshop/ex5) - пример решения практической задачи: _Регулирование яркости светодиодов с помощью таймера_
       - [ex6](./examples/part2/workshop/ex6) - пример решения практической задачи: _Подключение внешней Flash памяти по SPI_
-      - [ex7](./examples/part2/workshop/ex7) - пример решения практической задачи: _Часы_
+      - [ex7](./examples/part2/workshop/ex7) - пример решения практических задач: _Управление светодиодами через UART_
 - [hardware](./hardware/) - исходные файлы проекта _Учебный стенд_ в Altium Designer
 - [img](./img/) - различные картинки используемые в README файлах
 - [lectures](./lectures/) - слайды и тексты программ использованные на лекциях
