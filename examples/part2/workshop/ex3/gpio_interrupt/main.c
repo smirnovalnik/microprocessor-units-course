@@ -58,7 +58,7 @@ void sb1_init(void)
     /* Разрешение прерывания по фронту по линии EXTI4 в регистре
        Rising trigger selection register(RTSR) */
     EXTI->RTSR |= EXTI_RTSR_RT4;
-    
+
     /* Разрешение прерывания по спаду по линии EXTI4 в регистре
        Falling trigger selection register(FTSR) */
     EXTI->FTSR |= EXTI_FTSR_FT4;
@@ -70,7 +70,7 @@ void sb1_init(void)
        SYSCFG external interrupt configuration register (EXTICR2) */
     SYSCFG->EXTICR[1] |= SYSCFG_EXTICR2_EXTI4_PB;
 
-    /* Сброс флага вызвовшего прерывание в регистре
+    /* Сброс флага вызвавшего прерывание в регистре
        Pending register(PR) */
     EXTI->PR |= EXTI_PR_PIF4;
 
@@ -110,7 +110,7 @@ sb_state_t sb1_get_state(void)
    портов ввода/вывода по линиям 4-15 */
 void EXTI4_15_IRQHandler(void)
 {
-    /* Сброс флага вызвовшего прерывание в регистре
+    /* Сброс флага вызвавшего прерывание в регистре
        Pending register(PR) */
     EXTI->PR |= EXTI_PR_PIF4;
 

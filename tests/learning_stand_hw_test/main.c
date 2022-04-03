@@ -20,7 +20,7 @@ void test_i2c_temp(void);
 
 void test_pots(void)
 {
-    RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Включить тактирование прота A
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Включить тактирование порта A
     RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Включить тактирование порта B
     RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
 
