@@ -54,7 +54,7 @@ void led_set(uint8_t led, uint8_t color)
        так далее */
     GPIOC->ODR = led;
 
-    /* Включение светодиодов нужно цвета */
+    /* Включение светодиодов нужного цвета */
     if (color & RED)
     {
         GPIOA->ODR |= (1 << 6);
@@ -100,7 +100,7 @@ void usart_init(void)
         GPIO_MODER_MODER2_1 | GPIO_MODER_MODER3_1;
 
     /* Установить коэффициент деления.
-       BRR = 2 * fbus / baudrate
+       BRR = fbus / baudrate
        Пусть baudrate = 9600 бит/с, частота шины fbs = 8 МГц,
        тогда BRR = 8000000 / 9600 */
     USART2->BRR = 8000000 / 9600;
@@ -108,7 +108,7 @@ void usart_init(void)
     USART2->CR1 |= USART_CR1_TE;
     /* Включаем приемник */
     USART2->CR1 |= USART_CR1_RE;
-    /* Включаем TX */
+    /* Включаем USART */
     USART2->CR1 |= USART_CR1_UE;
 
     /* Чтение регистра данных для сброса флагов */
@@ -169,6 +169,8 @@ int main(void)
     {
         char ch = usart_receive();
 
+        /* Наполнение буфера если не нажата клавиша Enter.
+           Символ `\r` передается при нажатии клавиши Enter в терминале. */
         if (ch != '\r')
         {
             if (pos < 20)
@@ -197,9 +199,11 @@ int main(void)
             {
                 led_set(0x01, RED |  GREEN | BLUE);
             }
+            /* Команда не найдена */
             else
             {
-                /* Команда не найдена */
+                /* Передача строки ERROR.
+                   Символ `\n` переводит курсор на новую строку в терминале */
                 char* str = "ERROR\n";
                 for (int32_t i = 0; i < sizeof("ERROR\n") - 1; i++)
                 {
@@ -209,6 +213,7 @@ int main(void)
 
             /* Буфер наполняется заново */
             pos = 0;
+            /* Очистка буфера */
             for(int32_t i = 0; i < 20; i++)
             {
                 buf[i] = '\0';
