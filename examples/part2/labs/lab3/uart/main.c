@@ -112,7 +112,7 @@ void usart_init(void)
     USART2->CR1 |= USART_CR1_UE;
 
     /* Чтение регистра данных для сброса флагов */
-    (void)USART2->RDR;
+    uint16_t dummy = USART2->RDR;
 }
 
 /* Функция передачи байта в бесконечном цикле */

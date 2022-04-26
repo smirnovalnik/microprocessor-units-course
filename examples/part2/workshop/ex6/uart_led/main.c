@@ -72,7 +72,7 @@ void usart_init(void)
     USART2->CR1 |= USART_CR1_UE;
 
     /* Чтение регистра данных для сброса флагов */
-    (void)USART2->RDR;
+    uint16_t dummy = USART2->RDR;
 }
 
 /* Функция передачи байта в бесконечном цикле */
@@ -150,7 +150,7 @@ int main(void)
     /* Инициализация таймера TIM1 */
     usart_init();
 
-    char buf[20] = {0};
+    char buf[10] = {0};
     int32_t pos = 0;
 
     /* Бесконечный цикл */
