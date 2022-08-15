@@ -20,29 +20,30 @@ void test_i2c_temp(void);
 
 void test_pots(void)
 {
-    RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Включить тактирование порта A
-    RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Включить тактирование порта B
-    RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
+    // Включить тактирование портов A, B, C
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
     RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
 
-    /* Настройка на вывод */
+    // Настройка на вывод
     GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0 |
         GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 |
         GPIO_MODER_MODER8_0 | GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0 |
         GPIO_MODER_MODER12_0 | GPIO_MODER_MODER13_0 | GPIO_MODER_MODER14_0 | GPIO_MODER_MODER15_0;
 
-    /* Настройка на вывод */
+    // Настройка на вывод
     GPIOA->MODER |=
         GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0;
 
     GPIOA->MODER |= GPIO_MODER_MODER0 | GPIO_MODER_MODER1;
 
-    /* АЦП */
+    // АЦП
     ADC1->CR |= ADC_CR_ADEN;
 
-    /* Зеленые */
+    // Зеленые
     GPIOA->ODR = LED_GREEN_PIN;
     for (;;)
     {
@@ -80,24 +81,25 @@ void test_pots(void)
 
 void test_leds(void)
 {
-    RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Включить тактирование прота A
-    RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Включить тактирование порта B
-    RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
+    // Включить тактирование портов A, B, C
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
-    /* Настройка на вывод */
+    // Настройка на вывод
     GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0 |
         GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 |
         GPIO_MODER_MODER8_0 | GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0 |
         GPIO_MODER_MODER12_0 | GPIO_MODER_MODER13_0 | GPIO_MODER_MODER14_0 | GPIO_MODER_MODER15_0;
 
-    /* Настройка на вывод */
+    // Настройка на вывод
     GPIOA->MODER |=
         GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0;
 
     for (;;)
     {
-        /* Красные */
+        // Красные
         GPIOA->ODR = LED_RED_PIN;
         GPIOC->ODR = 0;
         for (uint32_t i = 0; i < 16; i++)
@@ -106,7 +108,7 @@ void test_leds(void)
             systick_delay(100);
         }
 
-        /* Зеленые */
+        // Зеленые
         GPIOA->ODR = LED_GREEN_PIN;
         GPIOC->ODR = 0;
         for (uint32_t i = 0; i < 16; i++)
@@ -115,7 +117,7 @@ void test_leds(void)
             systick_delay(100);
         }
 
-        /* Синие */
+        // Синие
         GPIOA->ODR = LED_BLUE_PIN;
         GPIOC->ODR = 0;
         for (uint32_t i = 0; i < 16; i++)
@@ -124,7 +126,7 @@ void test_leds(void)
             systick_delay(100);
         }
 
-        /* Белый */
+        // Белый
         GPIOA->ODR = LED_WHITE_PIN;
         GPIOC->ODR = 0;
         for (uint32_t i = 0; i < 16; i++)
@@ -137,11 +139,12 @@ void test_leds(void)
 
 void test_sw(void)
 {
-    RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Включить тактирование прота A
-    RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Включить тактирование порта B
-    RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
+    // Включить тактирование портов A, B, C
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
-    /* Настройка на вывод */
+    // Настройка на вывод
     GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0;
 
@@ -151,7 +154,7 @@ void test_sw(void)
     GPIOA->MODER &= ~GPIO_MODER_MODER14;
     GPIOA->PUPDR &= ~GPIO_PUPDR_PUPDR14;
 
-    /* Включение подтягивающих резисторов */
+    // Включение подтягивающих резисторов
     GPIOA->PUPDR |=
         GPIO_PUPDR_PUPDR11_0 | GPIO_PUPDR_PUPDR12_0 | GPIO_PUPDR_PUPDR13_0 | GPIO_PUPDR_PUPDR14_0;
 
@@ -181,15 +184,16 @@ void test_sw(void)
 
 void test_sb(void)
 {
-    RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Включить тактирование прота A
-    RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Включить тактирование порта B
-    RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
+    // Включить тактирование портов A, B, C
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
-    /* Настройка на вывод */
+    // Настройка на вывод
     GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0;
 
-    /* Включение подтягивающих резисторов */
+    // Включение подтягивающих резисторов
     GPIOB->PUPDR |=
         GPIO_PUPDR_PUPDR4_0 | GPIO_PUPDR_PUPDR5_0 | GPIO_PUPDR_PUPDR6_0 | GPIO_PUPDR_PUPDR7_0;
 
@@ -219,31 +223,32 @@ void test_sb(void)
 
 void test_keyboard(void)
 {
-    RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Включить тактирование прота A
-    RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Включить тактирование порта B
-    RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
+    // Включить тактирование портов A, B, C
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
-    /* Настройка на вывод */
+    // Настройка на вывод
     GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0 |
         GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 |
         GPIO_MODER_MODER8_0 | GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0 |
         GPIO_MODER_MODER12_0 | GPIO_MODER_MODER13_0 | GPIO_MODER_MODER14_0 | GPIO_MODER_MODER15_0;
 
-    /* Настройка на вывод */
+    // Настройка на вывод
     GPIOA->MODER |=
         GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0;
 
-    /* R0, R1, R2, R3 */
+    // R0, R1, R2, R3
     GPIOB->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0;
 
-    /* C0, C1, C2, C3 pull down */
+    // C0, C1, C2, C3 pull down
     GPIOB->PUPDR = 0;
     GPIOB->PUPDR |=
         GPIO_PUPDR_PUPDR4_1 | GPIO_PUPDR_PUPDR5_1 | GPIO_PUPDR_PUPDR6_1 | GPIO_PUPDR_PUPDR7_1;
 
-    /* Красные */
+    // Красные
     GPIOA->ODR = LED_RED_PIN;
     for (;;)
     {
@@ -365,16 +370,17 @@ uint8_t decoder_7seg(char ch, uint8_t dot)
 
 void test_7seg()
 {
-    RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Включить тактирование прота A
-    RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Включить тактирование порта B
-    RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
+    // Включить тактирование портов A, B, C
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
-    /* Настройка на вывод */
+    // Настройка на вывод
     GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0 |
         GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0;
 
-    /* Настройка на вывод D1, D2, D3, D4 */
+    // Настройка на вывод D1, D2, D3, D4
     GPIOC->MODER |=
         GPIO_MODER_MODER8_0 | GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0;
 
@@ -405,9 +411,10 @@ void test_7seg()
 
 void test_lcd()
 {
-    RCC->AHBENR |= RCC_AHBENR_GPIOAEN; // Включить тактирование прота A
-    RCC->AHBENR |= RCC_AHBENR_GPIOBEN; // Включить тактирование порта B
-    RCC->AHBENR |= RCC_AHBENR_GPIOCEN; // Включить тактирование порта C
+    // Включить тактирование портов A, B, C
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
     GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0 |
@@ -479,7 +486,6 @@ int main(void)
     printf("\t7. Test LCD. Set S1=1 S2=1 before test\n");
 
     int n = 0;
-    //scanf("Test: %d\n", &n);
     n = usart_receive() - '0';
     printf("Test %d\n", n);
     switch (n)
