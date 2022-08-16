@@ -395,22 +395,22 @@
             <File>
               <FileName>mt20s4a.h</FileName>
               <FileType>5</FileType>
-              <FilePath>Z:\Dropbox\Development\microprocessor-units-course\tests\learning_stand_hw_test\mt20s4a.h</FilePath>
+              <FilePath>.\mt20s4a.h</FilePath>
             </File>
             <File>
               <FileName>mt20s4a.c</FileName>
               <FileType>1</FileType>
-              <FilePath>Z:\Dropbox\Development\microprocessor-units-course\tests\learning_stand_hw_test\mt20s4a.c</FilePath>
+              <FilePath>.\mt20s4a.c</FilePath>
             </File>
             <File>
               <FileName>systick.h</FileName>
               <FileType>5</FileType>
-              <FilePath>Z:\Dropbox\Development\microprocessor-units-course\tests\learning_stand_hw_test\systick.h</FilePath>
+              <FilePath>.\systick.h</FilePath>
             </File>
             <File>
               <FileName>systick.c</FileName>
               <FileType>1</FileType>
-              <FilePath>Z:\Dropbox\Development\microprocessor-units-course\tests\learning_stand_hw_test\systick.c</FilePath>
+              <FilePath>.\systick.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -238,7 +238,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>Z:\Dropbox\Development\microprocessor-units-course\tests\learning_stand_hw_test\mt20s4a.h</PathWithFileName>
+      <PathWithFileName>.\mt20s4a.h</PathWithFileName>
       <FilenameWithoutPath>mt20s4a.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -250,7 +250,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>Z:\Dropbox\Development\microprocessor-units-course\tests\learning_stand_hw_test\mt20s4a.c</PathWithFileName>
+      <PathWithFileName>.\mt20s4a.c</PathWithFileName>
       <FilenameWithoutPath>mt20s4a.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -262,7 +262,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>Z:\Dropbox\Development\microprocessor-units-course\tests\learning_stand_hw_test\systick.h</PathWithFileName>
+      <PathWithFileName>.\systick.h</PathWithFileName>
       <FilenameWithoutPath>systick.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
@@ -274,7 +274,7 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>Z:\Dropbox\Development\microprocessor-units-course\tests\learning_stand_hw_test\systick.c</PathWithFileName>
+      <PathWithFileName>.\systick.c</PathWithFileName>
       <FilenameWithoutPath>systick.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
