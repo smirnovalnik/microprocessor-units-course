@@ -1,3 +1,17 @@
+/**
+  ******************************************************************************
+  * \file    main.c
+  * \author  Александр Смирнов
+  * \version 1.0.1
+  * \date    17.08.2022
+  * \brief   Программа на языке C для учебного стенда на базе
+  *          STM32F072RBT6 в среде разработки Keil uVision 5.
+  *          Подключение библиотек поддержки МК STM32F072RBT6 осуществляется
+  *          средствами IDE Keil через Run-Time Environment (RTE).
+  *          Программа для тестирования учебного стенда.
+  ******************************************************************************
+  */
+
 #include <stm32f0xx.h>
 #include "hal.h"
 #include "systick.h"
@@ -477,13 +491,13 @@ int main(void)
 
     printf("Test\n");
     printf("Choose test number\n");
-    printf("\t1. Test SW1-SW4. Set S1=0 S2=0 before test\n");
-    printf("\t2. Test SB1-SB4. Set S1=0 S2=0 before test\n");
-    printf("\t3. Test LEDs.    Set S1=0 S2=1 before test\n");
+    printf("\t1. Test SW1-SW4.    Set S1=0 S2=0 before test\n");
+    printf("\t2. Test SB1-SB4.    Set S1=0 S2=0 before test\n");
+    printf("\t3. Test LEDs.       Set S1=0 S2=1 before test\n");
     printf("\t4. Test POT1, POT2. Set S1=0 S2=1 S3=0 S4=0 before test\n");
-    printf("\t5. Test keyboard. Set S1=0 S2=1 before test\n");
-    printf("\t6. Test 7 segment. Set S1=1 S2=0 before test\n");
-    printf("\t7. Test LCD. Set S1=1 S2=1 before test\n");
+    printf("\t5. Test keyboard.   Set S1=0 S2=1 before test\n");
+    printf("\t6. Test 7 segment.  Set S1=1 S2=0 before test\n");
+    printf("\t7. Test LCD.        Set S1=1 S2=1 before test\n");
 
     int n = 0;
     n = usart_receive() - '0';
