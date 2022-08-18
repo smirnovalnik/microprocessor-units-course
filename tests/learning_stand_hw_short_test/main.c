@@ -39,6 +39,10 @@ int main(void)
     GPIOA->MODER |=
         GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0;
 
+    // Включение подтягивающих резисторов для SB1-SB4
+    GPIOB->PUPDR |=
+        GPIO_PUPDR_PUPDR4_0 | GPIO_PUPDR_PUPDR5_0 | GPIO_PUPDR_PUPDR6_0 | GPIO_PUPDR_PUPDR7_0;
+
     /* Линия PA14 (SW4) после сброса используется как SWCLK в режиме AF с pull-down.
        Для использования PA14 как порт ввода требуется отключить эти режимы,
        но при этом перестает работать отладочный интерфейс. */
@@ -49,72 +53,67 @@ int main(void)
     GPIOA->PUPDR |=
         GPIO_PUPDR_PUPDR11_0 | GPIO_PUPDR_PUPDR12_0 | GPIO_PUPDR_PUPDR13_0 | GPIO_PUPDR_PUPDR14_0;
 
-    // Включение подтягивающих резисторов для SB1-SB4
-    GPIOB->PUPDR |=
-        GPIO_PUPDR_PUPDR4_0 | GPIO_PUPDR_PUPDR5_0 | GPIO_PUPDR_PUPDR6_0 | GPIO_PUPDR_PUPDR7_0;
-
     uint16_t color = 0;
     uint8_t direction = 0;
 
     for(;;)
     {
-        // Проверка кнопок SB1-SB4
-        if (GPIOB->IDR & SB1_PIN)
-        {
-            GPIOA->ODR = LED_RED_PIN;
-            GPIOC->ODR = 0xFFFF;
-            break;
-        }
-
-        if (GPIOB->IDR & SB2_PIN)
-        {
-            GPIOA->ODR = LED_GREEN_PIN;
-            GPIOC->ODR = 0xFFFF;
-            break;
-        }
-
-        if (GPIOB->IDR & SB3_PIN)
-        {
-            GPIOA->ODR = LED_BLUE_PIN;
-            GPIOC->ODR = 0xFFFF;
-            break;
-        }
-
-        if (GPIOB->IDR & SB4_PIN)
-        {
-            GPIOA->ODR = LED_WHITE_PIN;
-            GPIOC->ODR = 0xFFFF;
-            break;
-        }
-
-        // Проверка переключателей SW1-SW4
-        color = 0;
-        direction = 0;
-        if (GPIOA->IDR & SW1_PIN)
-        {
-            color |= LED_RED_PIN;
-        }
-
-        if (GPIOA->IDR & SW2_PIN)
-        {
-            color |= LED_GREEN_PIN;
-        }
-
-        if (GPIOA->IDR & SW3_PIN)
-        {
-            color |= LED_BLUE_PIN;
-        }
-
-        if (GPIOA->IDR & SW4_PIN)
-        {
-            direction = 1;
-        }
-
-        // Бегущий огонь
-        GPIOA->ODR = color;
-        GPIOC->ODR = 0;
         for (uint32_t i = 0; i < 16; i++)
         {
+            // Проверка кнопок SB1-SB4
+            if (!(GPIOB->IDR & SB1_PIN))
+            {
+                GPIOA->ODR = LED_RED_PIN;
+                GPIOC->ODR = 0xFFFF;
+                continue;
+            }
+
+            if (!(GPIOB->IDR & SB2_PIN))
+            {
+                GPIOA->ODR = LED_GREEN_PIN;
+                GPIOC->ODR = 0xFFFF;
+                continue;
+            }
+
+            if (!(GPIOB->IDR & SB3_PIN))
+            {
+                GPIOA->ODR = LED_BLUE_PIN;
+                GPIOC->ODR = 0xFFFF;
+                continue;
+            }
+
+            if (!(GPIOB->IDR & SB4_PIN))
+            {
+                GPIOA->ODR = LED_WHITE_PIN;
+                GPIOC->ODR = 0xFFFF;
+                continue;
+            }
+
+            // Проверка переключателей SW1-SW4
+            color = 0;
+            direction = 0;
+            if (GPIOA->IDR & SW1_PIN)
+            {
+                color |= LED_RED_PIN;
+            }
+
+            if (GPIOA->IDR & SW2_PIN)
+            {
+                color |= LED_GREEN_PIN;
+            }
+
+            if (GPIOA->IDR & SW3_PIN)
+            {
+                color |= LED_BLUE_PIN;
+            }
+
+            if (GPIOA->IDR & SW4_PIN)
+            {
+                direction = 1;
+            }
+
+            // Бегущий огонь
+            GPIOA->ODR = color;
             GPIOC->ODR = direction ? (1 << i) : (0x8000 >> i);
             systick_delay(100);
         }
