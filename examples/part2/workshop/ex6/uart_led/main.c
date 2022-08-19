@@ -78,7 +78,7 @@ void usart_init(void)
 /* Функция передачи байта в бесконечном цикле */
 void usart_transmit(uint8_t data)
 {
-    /* Записать байт в регистр данны */
+    /* Записать байт в регистр данных */
     USART2->TDR = data;
     /* Ожидание флага окончания передачи TC (Transmission Complete) */
     while(!(USART2->ISR & USART_ISR_TC));
