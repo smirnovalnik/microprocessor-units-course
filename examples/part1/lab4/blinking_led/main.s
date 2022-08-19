@@ -1,4 +1,4 @@
-; \file    main.c
+; \file    main.s
 ; \author  Александр Смирнов
 ; \version 1.0.0
 ; \date    19.08.2022
