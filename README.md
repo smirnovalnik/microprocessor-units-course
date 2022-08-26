@@ -231,11 +231,11 @@ Keil MDK Lite Edition изначально ничего не знает о ми�
 
 #### Создание нового проекта для языка Ассемблер в Keil uVision5
 
-`TODO`
+![ ](./img/uvision_project_creation_asm.gif)
 
 #### Создание нового проекта для языка C в Keil uVision5
 
-![ ](./img/uvision_project_creation.gif)
+![ ](./img/uvision_project_creation_c.gif)
 
 #### Настройка подключения ST-Link в Keil uVision5
 
