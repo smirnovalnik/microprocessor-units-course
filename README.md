@@ -127,8 +127,8 @@ git clone https://github.com/smirnovalnik/microprocessor-units-course.git
 ## Перечень директорий репозитория
 
 - [docs](./docs/) - документация на микроконтроллер и учебный стенд
-  - [c_lang](./docs/c_lang/) - шпаргалка по языку C
   - [asm_lang](./docs/asm_lang/) - шпаргалка по ассемблеру ARM
+  - [c_lang](./docs/c_lang/) - шпаргалка по языку C
   - [learning_stand](./docs/learning_stand/) - документация (спецификации, схемы электрические принципиальные, сборочные чертежи) на _Учебный стенд_
   - [mcu_st_official](./docs/mcu_st_official/) - официальная документация (технические описания, руководства и т.д.) на МК _STM32F072RBT6_ на английском языке
   - [peripheral](./docs/peripheral/) - описание регистров специальных функций МК _STM32F072RBT6_
