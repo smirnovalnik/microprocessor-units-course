@@ -10,28 +10,28 @@
 ;          включает светодиод LED1.
 ;          Программа работает в режиме 0 учебного стенда (S1 = 0, S2 = 0).
 
-; Макроопределения
-; Начальный адрес регистров модуля RCC
+            ; Макроопределения
+            ; Начальный адрес регистров модуля RCC
 RCC_BASE    EQU     0x40021000
-; Адрес регистра AHBENR
+            ; Адрес регистра AHBENR
 RCC_AHBENR  EQU     RCC_BASE + 0x14
 
-; Начальный адрес регистров модуля GPIOC
+            ; Начальный адрес регистров модуля GPIOC
 GPIOC_BASE  EQU     0x48000800
-; Адрес регистра MODER
+            ; Адрес регистра MODER
 GPIOC_MODER EQU     GPIOC_BASE + 0x00
-; Адрес регистра ODR
+            ; Адрес регистра ODR
 GPIOC_ODR   EQU     GPIOC_BASE + 0x14
 
-; Начальный адрес регистров модуля GPIOB
+            ; Начальный адрес регистров модуля GPIOB
 GPIOB_BASE  EQU     0x48000400
-; Адрес регистра PUPDR
+            ; Адрес регистра PUPDR
 GPIOB_PUPDR EQU     GPIOB_BASE + 0x0C
-; Адрес регистра IDR
+            ; Адрес регистра IDR
 GPIOB_IDR   EQU     GPIOB_BASE + 0x10
 
-; Секция с программой
-            AREA    PROGRAM, CODE, READONLY ; Указание на расположение программы в памяти
+            ; Секция с программой
+            AREA    PROGRAM, CODE, READONLY
             ENTRY
             ALIGN
 
@@ -73,7 +73,7 @@ Led_Off     ; Выключить PC0(LED1)
             STR   R1, [R0]
             B     Main_Loop
 
-; Секция с таблицей векторов прерываний
+            ; Секция с таблицей векторов прерываний
             AREA    RESET, DATA, READONLY ; Указание на расположение векторов прерываний
             EXPORT  Vectors         ; Экспорт метки Vectors для компоновщика
 Vectors

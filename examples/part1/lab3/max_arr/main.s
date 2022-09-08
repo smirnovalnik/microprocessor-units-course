@@ -9,20 +9,22 @@
 ;          Найти максимальное число в массиве. Результат положить в ячейку
 ;          с адресом 0x20000020.
 
+            ; Тестовый массив
             AREA    DATA, DATA, READONLY
 ARR         DCW     42, 16, 5, 23, 19, 84, 19, 37, 20, 12
 
-; Макроопределения
+            ; Макроопределения
 ARR_LEN     EQU     10                          ; Длина массива
-ARR_ADDR    EQU     0x20000000
-MAX_ADDR    EQU     0x20000020
+ARR_ADDR    EQU     0x20000000                  ; Начальный адрес массива
+MAX_ADDR    EQU     0x20000020                  ; Адрес результата
 
-; Секция с программой
+            ; Секция с программой
             AREA    PROGRAM, CODE, READONLY
             ALIGN
             ENTRY
 
 Reset_Handler
+            ; Копирование тестового массива из постоянной памяти в оперативную
             LDR     R0, =ARR
             LDR     R1, =ARR_ADDR
             MOVS    R2, #0
@@ -32,7 +34,7 @@ Copy_Loop   LDRH    R3, [R0, R2]
             CMP     R2, #(2 * ARR_LEN)
             BNE     Copy_Loop
 
-; Поиск максимального числа
+            ; Поиск максимального числа
             LDR     R0, =ARR_ADDR
             MOVS    R1, #0
             LDRH    R2, [R0]
@@ -48,9 +50,11 @@ More        CMP     R1, #(2 * (ARR_LEN - 1))
             LDR     R0, =MAX_ADDR
             STR     R2, [R0]
 
-Stop        B  Stop             ; Бесконечный цикл
+Stop        B       Stop            ; Бесконечный цикл
 
-; Секция с таблицей векторов прерываний
+            ALIGN
+
+            ; Секция с таблицей векторов прерываний
             AREA    RESET, DATA, READONLY ; Указание на расположение векторов прерываний
             EXPORT  Vectors         ; Экспорт метки Vectors для компоновщика
 Vectors
