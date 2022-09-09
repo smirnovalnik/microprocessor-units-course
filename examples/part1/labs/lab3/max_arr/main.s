@@ -35,6 +35,10 @@ Copy_Loop   LDRH    R3, [R0, R2]
             BNE     Copy_Loop
 
             ; Поиск максимального числа
+            ; R0 - адрес массива
+            ; R1 - счетчик цикла
+            ; R2 - максимальный элемент
+            ; R3 - текущий элемент массива
             LDR     R0, =ARR_ADDR
             MOVS    R1, #0
             LDRH    R2, [R0]
@@ -47,6 +51,7 @@ Max_Loop    ADDS    R1, R1, #2
 More        CMP     R1, #(2 * (ARR_LEN - 1))
             BNE     Max_Loop
 
+            ; Сохранение максимального числа в памяти
             LDR     R0, =MAX_ADDR
             STR     R2, [R0]
 
