@@ -425,4 +425,4 @@ Keil MDK Lite Edition изначально ничего не знает о ми�
 
 ## Ошибки и опечатки
 
-Если вы нашли ошибки или опечатки просьба сообщать о них через [issues](https://github.com/smirnovalnik/embedded-systems-course/issues) в `GitHub` или писать на почту `smirnovalnik@mpei.ru`.
+Если вы нашли ошибки или опечатки просьба сообщать о них через [issues](https://github.com/smirnovalnik/microprocessor-units-course/issues) в `GitHub` или писать на почту `smirnovalnik@mpei.ru`.
