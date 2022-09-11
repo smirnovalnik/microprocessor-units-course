@@ -38,6 +38,7 @@
       - [Linux](#linux)
       - [MacOS](#macos)
       - [Текстовый редактор vscode](#текстовый-редактор-vscode)
+  - [Ошибки и опечатки](#ошибки-и-опечатки)
 
 ## Обзор курса
 
@@ -421,3 +422,7 @@ Keil MDK Lite Edition изначально ничего не знает о ми�
 - Для подсветки синтаксиса ассемблера - [Arm Assembly](https://marketplace.visualstudio.com/items?itemName=dan-c-underwood.arm)
 
 - Для подсветки синтаксиса скрипта компоновщика - [LinkerScript](https://marketplace.visualstudio.com/items?itemName=ZixuanWang.linkerscript)
+
+## Ошибки и опечатки
+
+Если вы нашли ошибки или опечатки просьба сообщать о них через [issues](https://github.com/smirnovalnik/embedded-systems-course/issues) в `GitHub` или писать на почту `smirnovalnik@mpei.ru`.
