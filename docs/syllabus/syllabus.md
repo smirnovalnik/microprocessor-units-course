@@ -57,7 +57,7 @@ The objectives of the first part of the course are:
 The objectives of the second part of the course are:
 
 - study of peripherals of the _STM32F072RBT6_ microcontroller unit
-- learning the C programming language and its application for embedded  systems
+- learning C programming language and its application for embedded  systems
 
 ## Prerequisites
 
@@ -71,21 +71,21 @@ The course consists of two parts: fall semester (part 1) and spring semester (pa
 
 - Lectures
   - Lecture #1: Principles of Digital Control Systems and Digital Signals Processing
-  - Lecture #2: The Structure of the Microprocessor System
-  - Lecture #3: Memory in the Microprocessor System (part 1)
-  - Lecture #4: Memory in the Microprocessor System (part 2)
+  - Lecture #2: Structure of Microprocessor System
+  - Lecture #3: Memory in Microprocessor System (part 1)
+  - Lecture #4: Memory in Microprocessor System (part 2)
   - Lecture #5: Input/Output Devices
-  - Lecture #6: The Instruction Set of the Central Processor Unit
-  - Lecture #7: The Structure of the Central Processor Unit (part 1)
-  - Lecture #8: The Structure of the Central Processor Unit (part 2)
-  - Lecture #9: Interaction in the Microprocessor System
+  - Lecture #6: Instruction Set of Central Processor Unit
+  - Lecture #7: Structure of Central Processor Unit (part 1)
+  - Lecture #8: Structure of Central Processor Unit (part 2)
+  - Lecture #9: Interaction in Microprocessor System
   - Lecture #10: Interrupt Mode
   - Lecture #11: Direct Memory Access Mode
-  - Lecture #12: The Modular Principle of a Microcontroller Unit
+  - Lecture #12: Modular Principle of Microcontroller Unit
   - Lecture #13: Microcontroller System Modules
   - Lecture #14: Microcontroller Clock System
   - Lecture #15: General Purpose I/O Ports
-  - Lecture #16: Features of the Central Processors of Various Architectures
+  - Lecture #16: Features of Central Processors of Various Architectures
 - Workshops
 - Labs
   - Lab #1: Data Processing and Data Access Instructions
@@ -97,8 +97,8 @@ The course consists of two parts: fall semester (part 1) and spring semester (pa
 ### Part 2
 
 - Lectures
-  - Lecture #1: The Structure of the Microcontroller Unit
-  - Lecture #2: Interaction of the Central Processor Unit and Peripherals
+  - Lecture #1: Structure of Microcontroller Unit
+  - Lecture #2: Interaction of Central Processor Unit and Peripherals
   - Lecture #3: General Purpose I/O Ports
   - Lecture #4: Analog to Digital Converter
   - Lecture #5: Interrupt Handling
@@ -167,7 +167,7 @@ git clone https://github.com/smirnovalnik/microprocessor-units-course.git
 
 ## List of Repository Directories
 
-- `docs` - documentation for the microcontroller and training stand
+- `docs` - documentation for the microcontroller and learning stand
   - `arm_official` - official documentation (technical descriptions, manuals, etc.) for the _ARM Cortex-M0_ processor
   - `asm_lang` - ARM assembly language cheat sheet
   - `c_lang` - C language cheat sheet
@@ -189,11 +189,11 @@ git clone https://github.com/smirnovalnik/microprocessor-units-course.git
       - `lab2` - an example of _Lab #2 Real-time subsystem of MCU_
       - `lab3` - an example of _Lab #3 Serial input/output subsystem of MCU: SPI, UART, I2C_
     - `workshop` - examples analyzed in practical classes
-      - `ex1` - examples of solving four practical tasks: _Turning on the LED_, _Turning on the LED by absolute addresses_, _LED switch control_, _Flashing LED_
+      - `ex1` - examples of solving four practical tasks: _Turning on LED_, _Turning on LED by absolute addresses_, _LED switch control_, _Flashing LED_
       - `ex2` - examples of solving two practical tasks: _Reading ADC by software polling_, _Button anti-bounce_
       - `ex3` - examples of solving two practical problems: _External interrupts on I/O ports_, _Interrupt at the end of ADC conversion_
       - `ex4` - an example of solving a practical problem: _Running LED_
-      - `ex5` - an example of solving a practical problem: _Regulating the brightness of LEDs using a timer_
+      - `ex5` - an example of solving a practical problem: _Regulating the brightness of LEDs using timer_
       - `ex6` - an example of solving a practical problem: _Connecting external Flash memory via SPI_
       - `ex7` - an example of solving practical problems: _Controlling LEDs via UART_
 - `hardware` - source files for the _Learning Stand_ project in Altium Designer
@@ -210,7 +210,7 @@ git clone https://github.com/smirnovalnik/microprocessor-units-course.git
 - Ugryumov E. "Digital circuitry"_
 - _Joseph Yiu "The Definitive Guide to ARM Cortex-M0 and Cortex-M0+ Processors 2nd Edition"_
 - If you want to program C language you must read and **solve all exercises** in the textbook
-_Kernighan B., Ritchie D. "The C Programming Language" 2nd edition._
+_Brian Kernighan., Dennis Ritchie "The C Programming Language" 2nd edition._
 
 ## Useful Links
 
@@ -219,7 +219,7 @@ _Kernighan B., Ritchie D. "The C Programming Language" 2nd edition._
 
 ## Learning Stand
 
-Structurally, the stand consists of several boards with electronic components: evaluation board _STM32F072B-DISCO_, main board, LCD indicator, wireless data transmission module.
+The learning stand consists of several boards with electronic components: evaluation board _STM32F072B-DISCO_, main board, LCD indicator, wireless data transmission module.
 
 The main board contains actuators and input devices for the microprocessor controller. This board was developed at the Department of Industrial Electronics of MPEI.
 
@@ -227,7 +227,7 @@ The _STM32F072B-DISCO_ evaluation board contains the _STM32F072RBT6_ MCU under s
 
 The _STM32F072RBT6_ board contains a small number of input and output devices. The board with external elements expands the input and output capabilities, which allows you to create many different training tasks using the indication and all kinds of buttons and switches.
 
-![ ](img/learning_stand.png)
+![ ](../../img/learning_stand.png)
 
 1. _STM32F072B-DISCO_ evaluation board
 2. Alphanumeric LCD indicator with built-in controller
@@ -261,7 +261,7 @@ The installation process is no different from installing any other program for W
 > :bulb: **Note:** Avoid Russian-language directory names both in the installation path of the program and in the paths to your projects. Some components of the development environment may not work.
 
 This version has almost all the functionality of the professional version,
-but with a limit on the size of the compiled program of `32 kB`.
+but with a limit on the size of the compiled program (`32 kB`).
 For labs and workshops of this course, this is more than enough.
 
 `Keil MDK Lite Edition` has a simulator, so the program

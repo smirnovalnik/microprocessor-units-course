@@ -118,7 +118,7 @@ $(BUILD_DIR)/%.bin: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 $(BUILD_DIR):
 	mkdir $@
 
-# Очистка директори с результатом построения
+# Очистка директории с результатом построения
 clean:
 	-rm -fR $(BUILD_DIR)
 
@@ -126,5 +126,5 @@ clean:
 flash:
 	openocd -f interface/stlink.cfg -f target/stm32f0x.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify reset exit"
 
-# dependencies
+# Зависимости
 -include $(wildcard $(BUILD_DIR)/*.d)
