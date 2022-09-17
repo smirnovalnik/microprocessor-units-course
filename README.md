@@ -220,7 +220,7 @@ git clone https://github.com/smirnovalnik/microprocessor-units-course.git
 - [hardware](./hardware/) - исходные файлы проекта _Учебный стенд_ в Altium Designer
 - [img](./img/) - различные картинки используемые в README файлах
 - [lectures](./lectures/) - слайды и тексты программ использованные на лекциях
-- [programs](./lectures/) - программы для установки
+- [programs](./programs/) - программы для установки
 - [tests](./tests/) - проекты для теста аппаратного обеспечения _Учебного стенда_
 - [templates](./templates/) - шаблоны проектов
 
