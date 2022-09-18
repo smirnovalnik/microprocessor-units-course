@@ -11,20 +11,14 @@
 ;          Программа работает в режиме 0 учебного стенда (S1 = 0, S2 = 0).
 
             ; Макроопределения
-            ; Начальный адрес регистров модуля RCC
-RCC_BASE    EQU     0x40021000
-            ; Адрес регистра AHBENR
-RCC_AHBENR  EQU     RCC_BASE + 0x14
+RCC_BASE    EQU   0x40021000          ; Начальный адрес регистров модуля RCC
+RCC_AHBENR  EQU   RCC_BASE + 0x14     ; Адрес регистра AHBENR
 
-            ; Начальный адрес регистров модуля GPIOC
-GPIOC_BASE  EQU     0x48000800
-            ; Адрес регистра MODER
-GPIOC_MODER EQU     0x48000800 + 0x00
-            ; Адрес регистра ODR
-GPIOC_ODR   EQU     0x48000800 + 0x14
+GPIOC_BASE  EQU   0x48000800          ; Начальный адрес регистров модуля GPIOC
+GPIOC_MODER EQU   GPIOC_BASE + 0x00   ; Адрес регистра MODER
+GPIOC_ODR   EQU   GPIOC_BASE + 0x14   ; Адрес регистра ODR
 
-            ; Макроопределение с длительностью задержки
-DELAY       EQU     1000000
+DELAY       EQU   1000000             ; Макроопределение с длительностью задержки
 
             ; Секция с программой
             AREA    PROGRAM, CODE, READONLY

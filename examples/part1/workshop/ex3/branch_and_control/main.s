@@ -46,7 +46,7 @@ Loop1
 
             ADDS R0, R0, R1     ; sum = sum + i
             ADDS R1, R1, #1     ; i = i + 1
-            B    Loop1          ; повтор цикла
+            B    Loop1          ; Повтор цикла
 Loop1_Done
 
 

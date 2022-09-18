@@ -1,7 +1,7 @@
 ; \file    main.s
 ; \author  Александр Смирнов
-; \version 1.0.0
-; \date    1.02.2022
+; \version 1.0.1
+; \date    18.09.2022
 ; \brief   Пример программы для лабораторной работы №4 на языке Ассемблер
 ;          для учебного стенда на базе STM32F072RBT6
 ;          в среде разработки Keil uVision 5.
@@ -11,24 +11,16 @@
 ;          Программа работает в режиме 0 учебного стенда (S1 = 0, S2 = 0).
 
             ; Макроопределения
-            ; Начальный адрес регистров модуля RCC
-RCC_BASE    EQU     0x40021000
-            ; Адрес регистра AHBENR
-RCC_AHBENR  EQU     RCC_BASE + 0x14
+RCC_BASE    EQU   0x40021000         ; Начальный адрес регистров модуля RCC
+RCC_AHBENR  EQU   RCC_BASE + 0x14    ; Адрес регистра AHBENR
 
-            ; Начальный адрес регистров модуля GPIOC
-GPIOC_BASE  EQU     0x48000800
-            ; Адрес регистра MODER
-GPIOC_MODER EQU     GPIOC_BASE + 0x00
-            ; Адрес регистра ODR
-GPIOC_ODR   EQU     GPIOC_BASE + 0x14
+GPIOC_BASE  EQU   0x48000800          ; Начальный адрес регистров модуля GPIOC
+GPIOC_MODER EQU   GPIOC_BASE + 0x00   ; Адрес регистра MODER
+GPIOC_ODR   EQU   GPIOC_BASE + 0x14   ; Адрес регистра ODR
 
-            ; Начальный адрес регистров модуля GPIOB
-GPIOB_BASE  EQU     0x48000400
-            ; Адрес регистра PUPDR
-GPIOB_PUPDR EQU     GPIOB_BASE + 0x0C
-            ; Адрес регистра IDR
-GPIOB_IDR   EQU     GPIOB_BASE + 0x10
+GPIOB_BASE  EQU   0x48000400          ; Начальный адрес регистров модуля GPIOB
+GPIOB_PUPDR EQU   GPIOB_BASE + 0x0C   ; Адрес регистра PUPDR
+GPIOB_IDR   EQU   GPIOB_BASE + 0x10   ; Адрес регистра IDR
 
             ; Секция с программой
             AREA    PROGRAM, CODE, READONLY
@@ -72,6 +64,8 @@ Led_Off     ; Выключить PC0(LED1)
             LDR   R1, =0x00
             STR   R1, [R0]
             B     Main_Loop
+
+            ALIGN
 
             ; Секция с таблицей векторов прерываний
             AREA    RESET, DATA, READONLY ; Указание на расположение векторов прерываний
