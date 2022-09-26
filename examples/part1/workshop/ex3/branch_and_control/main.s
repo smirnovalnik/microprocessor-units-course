@@ -42,7 +42,7 @@ If_Done
             MOVS R1, #0         ; i = 0
 Loop1
             CMP  R1, #4         ; Сравнение i с числом 4
-            BGE  Loop1_Done     ; Если меньше, то переход Loop1_Done
+            BGE  Loop1_Done     ; Если больше или равно, то переход Loop1_Done
 
             ADDS R0, R0, R1     ; sum = sum + i
             ADDS R1, R1, #1     ; i = i + 1
@@ -51,6 +51,12 @@ Loop1_Done
 
 
             ; Простой цикл
+            ; Псевдокод:
+            ; i = 5
+            ; do
+            ;   nop
+            ;   i = i - 1
+            ; while (i != 0)
             ; Пусть количество повторов находится в R0
             MOVS R0, #5         ; Инициализация счетчика цикла
 Loop2
