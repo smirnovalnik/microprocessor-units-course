@@ -9,7 +9,7 @@
   *          Подключение библиотек поддержки МК STM32F072RBT6 осуществляется
   *          средствами IDE Keil через Run-Time Environment (RTE).
   *          Программа для тестирования учебного стенда в укороченном
-  *          варианте. Тест светодиодов (LED1-LED16), кнопок (SB1-SB4) и 
+  *          варианте. Тест светодиодов (D1-D16), кнопок (SB1-SB4) и
   *          переключателей (SW1-SW4).
   *          Программа работает в режиме 1 учебного стенда (S1 = 0, S2 = 1).
   ******************************************************************************
@@ -28,7 +28,7 @@ int main(void)
     RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
     RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
-    // Настройка на вывод LED1-LED16
+    // Настройка на вывод D1-D16
     GPIOC->MODER |=
         GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 | GPIO_MODER_MODER3_0 |
         GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 | GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 |
