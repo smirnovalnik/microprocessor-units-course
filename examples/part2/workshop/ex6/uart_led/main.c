@@ -22,13 +22,13 @@
    функций МК STM32F072RBT6. */
 #include <stm32f0xx.h>
 
-/* Функция инициализации светодиодов LED1-LED8 */
+/* Функция инициализации светодиодов D1-D8 */
 void leds_init(void)
 {
     /* Включение тактирования порта C */
     RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
-    /* Настройка на вывод линий PC0 - PC7 (LED1 - LED8) */
+    /* Настройка на вывод линий PC0 - PC7 (LED1 - D8) */
     GPIOC->MODER |= GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 |
                     GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 |
                     GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0;
@@ -145,7 +145,7 @@ void putstr(char* str)
 /* Функция main - точка входа в программу */
 int main(void)
 {
-    /* Инициализация светодиодов LED1-LED8 */
+    /* Инициализация светодиодов D1-D8 */
     leds_init();
     /* Инициализация таймера TIM1 */
     usart_init();

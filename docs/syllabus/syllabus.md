@@ -235,7 +235,7 @@ The _STM32F072RBT6_ board contains a small number of input and output devices. T
 4. DAC outputs with BNC connector
 5. ADC input via SPI with BNC connector
 6. ADC input with BNC connector
-7. 16 RGB LEDs (LED1-LED16)
+7. 16 RGB LEDs (D1-D16)
 8. Switches for selecting the ADC channel between BNC inputs and potentiometers POT1, POT2
 9. Potentiometers (POT1 and POT2)
 10. Keyboard consisting of 16 buttons
