@@ -25,7 +25,7 @@ void leds_init(void)
     /* Включение тактирования порта C */
     RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
-    /* Настройка на вывод линий PC0 - PC7 (LED1 - D8) */
+    /* Настройка на вывод линий PC0 - PC7 (D1 - D8) */
     GPIOC->MODER |= GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 |
                     GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 |
                     GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0;
@@ -35,7 +35,7 @@ void leds_init(void)
 void led_set(uint8_t led)
 {
     /* Записываем в регистр данных порта C новое состояние светодиодов.
-       Номер бита соответствует номеру светодиода: бит 0 - LED1, бит 1 - LED2 и
+       Номер бита соответствует номеру светодиода: бит 0 - D1, бит 1 - D2 и
        так далее */
     GPIOC->ODR = led;
 }

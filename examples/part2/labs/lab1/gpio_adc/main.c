@@ -35,7 +35,7 @@ int main(void)
     /* Включение тактирования АЦП */
     RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
 
-    /* Настройка на вывод линий PC0 - PC11 (LED1 - LED12) */
+    /* Настройка на вывод линий PC0 - PC11 (D1 - D12) */
     GPIOC->MODER = GPIOC->MODER |
         (GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 |
          GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 |

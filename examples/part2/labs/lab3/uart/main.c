@@ -10,7 +10,7 @@
   *          средствами IDE Keil через Run-Time Environment (RTE).
   *          Разработать программу, обеспечивающую управление цветом светодиода
   *          через командный интерфейс.
-  *          При вводе команды RED светодиод LED1 загорается красным цветом,
+  *          При вводе команды RED светодиод D1 загорается красным цветом,
   *          при вводе GREEN - зеленым, вводе BLUE - синим, а при вводе WHITE -
   *          белым цветом.
   *          Если введена неизвестная команда, то на терминал выводится слово
@@ -35,7 +35,7 @@ void leds_init(void)
     /* Настройка на вывод линий PA6, PA7, PA8 (RED, GREEN, BLUE) */
     GPIOA->MODER |= (GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0);
 
-    /* Настройка на вывод линий PC0 - PC7 (LED1 - D8) */
+    /* Настройка на вывод линий PC0 - PC7 (D1 - D8) */
     GPIOC->MODER |= GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 |
                     GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 |
                     GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0;
@@ -50,7 +50,7 @@ void leds_init(void)
 void led_set(uint8_t led, uint8_t color)
 {
     /* Записываем в регистр данных порта C новое состояние светодиодов.
-       Номер бита соответствует номеру светодиода: бит 0 - LED1, бит 1 - LED2 и
+       Номер бита соответствует номеру светодиода: бит 0 - D1, бит 1 - D2 и
        так далее */
     GPIOC->ODR = led;
 

@@ -33,7 +33,7 @@ void led_init(void)
     /* Включение тактирования порта C */
     RCC->AHBENR = RCC->AHBENR | RCC_AHBENR_GPIOCEN;
 
-    /* Настройка на вывод линий PC0 - PC11 (LED1 - LED12) */
+    /* Настройка на вывод линий PC0 - PC11 (D1 - D12) */
     GPIOC->MODER = GPIOC->MODER |
         (GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 |
          GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 |
