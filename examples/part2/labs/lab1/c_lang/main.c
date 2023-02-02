@@ -54,8 +54,8 @@ int main(void)
     /* Объявление переменной с плавающей запятой (32 бит) */
     float f;
 
-    /* Объявление и инициализация символьной переменной */
-    char ch = 'a';
+    /* Инициализация символьной переменной */
+    char ch;
 
 
     /* 3. Оператор присваивания */
@@ -305,25 +305,25 @@ int main(void)
 
     /* Бесконечный цикл. Необходим для микроконтроллера */
     //for(;;);
-    while(1);
+    //while(1);
 }
 
 
-    /* Абсолютное значение числа */
-    int abs(int n)
-    {
-        if (n < 0)
-            return -n;
-        else
-            return n;
-    }
+/* Абсолютное значение числа */
+int abs(int n)
+{
+    if (n < 0)
+        return -n;
+    else
+        return n;
+}
 
-    /* Поиск максимального элемента в массиве */
-    int arr_max(int a[], int n)
-    {
-        int max = a[0];
-        for (int i = 1; i < n; i++)
-            if (a[i] > max)
-                max = a[i];
-        return max;
-    }
+/* Поиск максимального элемента в массиве */
+int arr_max(int a[], int n)
+{
+    int max = a[0];
+    for (int i = 1; i < n; i++)
+        if (a[i] > max)
+            max = a[i];
+    return max;
+}
