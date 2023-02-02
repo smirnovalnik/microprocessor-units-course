@@ -144,8 +144,12 @@ i++; /* i = 1 */
 i = 0;
 a = i++; /* a = 0, i = 1 */
 a = ++i; /* a = 2, i = 2 */
+
 i = 0;
 i += 10; /* i = 10 */
+i -= 5;  /* i = 5 */
+i *= 2;  /* i = 10 */
+i /= 5;  /* i = 2 */
 
 a = 2;
 i /= a + 3; /* i = 2 */
@@ -344,10 +348,17 @@ while (i < 10) {
     i++;
 }
 
+spi_send_byte(cmd);
 do {
-    spi_send_byte(cmd);
     status = spi_get_status();
 } while (status != SPI_OK);
+
+spi_send_byte(cmd);
+status = spi_get_status();
+while (status != SPI_OK)
+{
+    status = spi_get_status();
+}
 
 /* "Зануление" массива */
 for (i = 0; i < n; i++) {
