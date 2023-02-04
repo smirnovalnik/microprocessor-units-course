@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\Objects\</OutputDirectory>
-          <OutputName>uvision_c</OutputName>
+          <OutputName>c_lang_func</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
@@ -383,9 +383,9 @@
           <GroupName>src</GroupName>
           <Files>
             <File>
-              <FileName>c_lang_1.c</FileName>
+              <FileName>c_lang_base.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\c_lang_1.c</FilePath>
+              <FilePath>.\c_lang_base.c</FilePath>
             </File>
           </Files>
         </Group>
