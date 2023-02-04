@@ -161,7 +161,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>\Mac\Home\Dropbox\Development\microprocessor-units-course\examples\part2\workshop\ex6\uart_led\\Mac\Home\Dropbox\Development\microprocessor-units-course\examples\part2\workshop\ex6\uart_led\main.c</Filename>
+          <Filename>\\Mac\Dropbox\Mac\Home\Dropbox\Development\microprocessor-units-course\examples\part2\workshop\ex6\uart_led\Mac\Home\Dropbox\Development\microprocessor-units-course\examples\part2\workshop\ex6\uart_led\main.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\uvision_c\main.c\172</Expression>
         </Bp>
@@ -231,8 +231,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\main.c</PathWithFileName>
-      <FilenameWithoutPath>main.c</FilenameWithoutPath>
+      <PathWithFileName>.\uart_led.c</PathWithFileName>
+      <FilenameWithoutPath>uart_led.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
