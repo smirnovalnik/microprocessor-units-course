@@ -15,6 +15,7 @@
 
 /* Подключение стандартной библиотеки ввода/вывода */
 #include "stdio.h"
+/* Подключение модуля EventRecorder */
 #include "EventRecorder.h"
 
 int slen(char *s)

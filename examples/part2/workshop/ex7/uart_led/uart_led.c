@@ -150,7 +150,7 @@ int main(void)
     /* Инициализация таймера TIM1 */
     usart_init();
 
-    char buf[10] = {0};
+    char buf[20] = {0};
     int32_t pos = 0;
 
     /* Бесконечный цикл */

@@ -383,9 +383,9 @@
           <GroupName>src</GroupName>
           <Files>
             <File>
-              <FileName>adc_debouncing.c</FileName>
+              <FileName>gpio_debouncing.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\adc_debouncing.c</FilePath>
+              <FilePath>.\gpio_debouncing.c</FilePath>
             </File>
           </Files>
         </Group>
