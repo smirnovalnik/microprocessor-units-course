@@ -16,3 +16,4 @@ RTE/
 .cortex-debug.peripherals.state.json
 .cortex-debug.registers.state.json
 *.log
+*.bkp
