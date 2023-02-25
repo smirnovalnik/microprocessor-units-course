@@ -59,7 +59,7 @@ void pot_init(void)
     /* 8 бит */
     ADC1->CFGR1 |= ADC_CFGR1_RES_1;
 
-    /* Прерывание по флагу EOC */
+    /* Разрешение прерывания по флагу EOC */
     ADC1->IER |= ADC_IER_EOCIE;
 
     /* Предделитель АЦП */
