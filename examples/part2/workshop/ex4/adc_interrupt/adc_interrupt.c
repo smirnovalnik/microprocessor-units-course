@@ -2,8 +2,8 @@
   ******************************************************************************
   * \file    adc_interrupt.c
   * \author  Александр Смирнов
-  * \version 1.0.0
-  * \date    1.02.2022
+  * \version 1.0.1
+  * \date    27.02.2022
   * \brief   Программа на языке C для учебного стенда на базе
   *          STM32F072RBT6 в среде разработки Keil uVision 5.
   *          Подключение библиотек поддержки МК STM32F072RBT6 осуществляется
@@ -73,40 +73,39 @@ void pot_init(void)
        0 - наибольший приоритет, 3 - наименьший. */
     NVIC_SetPriority(ADC1_COMP_IRQn, 0);
 
-    /* Разрешение прервания по ADC1 */
+    /* Разрешение прерывания по ADC1 */
     NVIC_EnableIRQ(ADC1_COMP_IRQn);
-}
 
-/* Перечисление с номером потенциометра */
-typedef enum {
-    POT1 = ADC_CHSELR_CHSEL0, /* POT1 -> PA0 -> ADC Channel 0 */
-    POT2 = ADC_CHSELR_CHSEL1, /* POT2 -> PA1 -> ADC Channel 1 */
-} pot_t;
+    /* Установка канала для преобразования */
+    ADC1->CHSELR = ADC_CHSELR_CHSEL0;
 
-void pot_start(pot_t pot)
-{
-    /* Выбор следующего канала для преобразования */
-    ADC1->CHSELR = pot;
-
-    /* Программный запуск преобразования */
+    /* Запуск преобразования */
     ADC1->CR |= ADC_CR_ADSTART;
 }
 
+/* Глобальные переменные с результатом преобразования */
 volatile uint16_t pot1_code = 0, pot2_code = 0;
 
 /* Подпрограмма обработчик прерываний */
 void ADC1_COMP_IRQHandler(void)
 {
-    if (ADC1->CHSELR == POT1)
+    if (ADC1->CHSELR == ADC_CHSELR_CHSEL0)
     {
+        /* Чтение результата преобразования и сброс флага окончания преобразования */
         pot1_code = ADC1->DR;
-        pot_start(POT2);
+        /* Выбор следующего канала для преобразования */
+        ADC1->CHSELR = ADC_CHSELR_CHSEL1;
     }
-    else if (ADC1->CHSELR == POT2)
+    else if (ADC1->CHSELR == ADC_CHSELR_CHSEL1)
     {
+        /* Чтение результата преобразования и сброс флага окончания преобразования */
         pot2_code = ADC1->DR;
-        pot_start(POT1);
+        /* Выбор следующего канала для преобразования */
+        ADC1->CHSELR = ADC_CHSELR_CHSEL0;
     }
+
+    /* Запуск преобразования */
+    ADC1->CR |= ADC_CR_ADSTART;
 }
 
 /* Функция main - точка входа в программу */
@@ -116,8 +115,6 @@ int main(void)
     led_init();
     /* Инициализация потенциометров */
     pot_init();
-
-    pot_start(POT1);
 
     /* Бесконечный цикл */
     while (1)
