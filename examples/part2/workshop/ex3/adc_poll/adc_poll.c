@@ -2,14 +2,15 @@
   ******************************************************************************
   * \file    adc_poll.c
   * \author  Александр Смирнов
-  * \version 1.0.0
-  * \date    1.02.2022
+  * \version 1.0.1
+  * \date    13.03.2023
   * \brief   Программа на языке C для учебного стенда на базе
   *          STM32F072RBT6 в среде разработки Keil uVision 5.
   *          Подключение библиотек поддержки МК STM32F072RBT6 осуществляется
   *          средствами IDE Keil через менеджер пакетов Run-Time Environment (RTE).
-  *          В верхнем положении ключа SW1 включается светодиод D16,
-  *          в нижнем светодиод D16 выключается.
+  *          При нажатой кнопке SB3 на светодиоды D1-D16 выводится результат
+  *          "оцифровки" потенциометра POT1 в двоичном коде,
+  *          при отжатой - потенциометра POT2.
   *          Программа работает в режиме 0 учебного стенда (S1 = 0, S2 = 0).
   ******************************************************************************
   */
@@ -31,14 +32,14 @@ void software_delay(uint32_t ticks)
 void led_init(void)
 {
     /* Включение тактирования порта C */
-    RCC->AHBENR = RCC->AHBENR | RCC_AHBENR_GPIOCEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
     /* Настройка на вывод линий PC0 - PC11 (D1 - D12) */
-    GPIOC->MODER = GPIOC->MODER |
-        (GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 |
-         GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 |
-         GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0 |
-         GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0);
+    GPIOC->MODER |=
+        GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 |
+        GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 |
+        GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0 |
+        GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0;
 }
 
 /* Функция установки состояния светодиодов */
@@ -52,10 +53,10 @@ void led_set(uint16_t led)
 void sb3_init(void)
 {
     /* Включение тактирования порта B */
-    RCC->AHBENR = RCC->AHBENR | RCC_AHBENR_GPIOBEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
 
     /* Включение подтягивающих резисторов PB6 (SB3) */
-    GPIOB->PUPDR = GPIOB->PUPDR | GPIO_PUPDR_PUPDR6_0;
+    GPIOB->PUPDR |= GPIO_PUPDR_PUPDR6_0;
 }
 
 /* Перечисление с состояниями кнопки */
@@ -127,7 +128,6 @@ sb_state_t sb3_get_state(void)
 
     return return_state;
 }
-
 
 /* Инициализация потенциометров */
 void pot_init(void)
