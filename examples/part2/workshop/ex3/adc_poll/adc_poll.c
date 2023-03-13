@@ -133,7 +133,7 @@ sb_state_t sb3_get_state(void)
 void pot_init(void)
 {
     /* Включение тактирования порта A */
-    RCC->AHBENR = RCC->AHBENR | RCC_AHBENR_GPIOAEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
     /* Включение тактирования АЦП */
     RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
 
