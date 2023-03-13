@@ -2,8 +2,8 @@
   ******************************************************************************
   * \file    adc_interrupt.c
   * \author  Александр Смирнов
-  * \version 1.0.1
-  * \date    27.02.2022
+  * \version 1.0.2
+  * \date    13.03.2023
   * \brief   Программа на языке C для учебного стенда на базе
   *          STM32F072RBT6 в среде разработки Keil uVision 5.
   *          Подключение библиотек поддержки МК STM32F072RBT6 осуществляется
@@ -24,16 +24,16 @@
 void led_init(void)
 {
     /* Включение тактирования порта C */
-    RCC->AHBENR = RCC->AHBENR | RCC_AHBENR_GPIOCEN;
+    RCC->AHBENR |= RCC_AHBENR_GPIOCEN;
 
     /* Настройка на вывод линий PC0 - PC15 (D1 - D16) */
-    GPIOC->MODER = GPIOC->MODER |
-        (GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 |
-         GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 |
-         GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0 |
-         GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0 |
-         GPIO_MODER_MODER12_0 | GPIO_MODER_MODER13_0 | GPIO_MODER_MODER14_0 |
-         GPIO_MODER_MODER15_0);
+    GPIOC->MODER |=
+        GPIO_MODER_MODER0_0 | GPIO_MODER_MODER1_0 | GPIO_MODER_MODER2_0 |
+        GPIO_MODER_MODER3_0 | GPIO_MODER_MODER4_0 | GPIO_MODER_MODER5_0 |
+        GPIO_MODER_MODER6_0 | GPIO_MODER_MODER7_0 | GPIO_MODER_MODER8_0 |
+        GPIO_MODER_MODER9_0 | GPIO_MODER_MODER10_0 | GPIO_MODER_MODER11_0 |
+        GPIO_MODER_MODER12_0 | GPIO_MODER_MODER13_0 | GPIO_MODER_MODER14_0 |
+        GPIO_MODER_MODER15_0;
 }
 
 /* Функция установки состояния светодиодов */
