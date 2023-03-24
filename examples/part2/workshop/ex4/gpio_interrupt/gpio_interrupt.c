@@ -49,7 +49,7 @@ void sb1_init(void)
     RCC->AHBENR |= RCC_AHBENR_GPIOBEN;
 
     /* Включение подтягивающих резисторов PB4 (SB1) */
-    GPIOB->PUPDR = GPIOB->PUPDR | GPIO_PUPDR_PUPDR4_0;
+    GPIOB->PUPDR |= GPIO_PUPDR_PUPDR4_0;
 
     /* Разрешение прерывания по линии EXTI4 в регистре
        Interrupt mask register (IMR) */
@@ -63,7 +63,7 @@ void sb1_init(void)
        Falling trigger selection register(FTSR) */
     EXTI->FTSR |= EXTI_FTSR_FT4;
 
-    /* Включение тактирования модуля System configuration controller(SYSCFG) */
+    /* Включение тактирования модуля System configuration controller (SYSCFG) */
     RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
 
     /* Подключение линии EXTI4 к выводу PB4 в регистре
@@ -89,7 +89,7 @@ typedef enum {
     SB_UNPRESSED    /* Кнопка отжата */
 } sb_state_t;
 
-/* Функция получения состояния кнопки SB1 с антидребезгом */
+/* Функция получения состояния кнопки SB1 */
 sb_state_t sb1_get_state(void)
 {
     /* Чтение состояния кнопки SB1 */
