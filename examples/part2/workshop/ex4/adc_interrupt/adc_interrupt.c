@@ -50,11 +50,12 @@ void pot_init(void)
 {
     /* Включение тактирования порта A */
     RCC->AHBENR |= RCC_AHBENR_GPIOAEN;
-    /* Включение тактирования АЦП */
-    RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
 
     /* Настройка линий PA0 (POT1) и PA1 (POT2) на аналоговый режим  */
     GPIOA->MODER |= GPIO_MODER_MODER0 | GPIO_MODER_MODER1;
+
+    /* Включение тактирования АЦП */
+    RCC->APB2ENR |= RCC_APB2ENR_ADC1EN;
 
     /* 8 бит */
     ADC1->CFGR1 |= ADC_CFGR1_RES_1;
