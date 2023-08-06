@@ -221,7 +221,7 @@ _Керниган Б., Ритчи Д. "Язык программирования
 
 - [Страница по stm32072rb от производителя](https://www.st.com/en/microcontrollers-microprocessors/stm32f072rb.html)
 - [Страница по stm32f072-disco от производителя](https://www.st.com/en/evaluation-tools/32f072bdiscovery.html)
-- [SoC 101](https://www.eng.biu.ac.il/temanad/soc-101/)
+- [Курс по системам на кристалле – SoC 101](https://www.eng.biu.ac.il/temanad/soc-101/)
 
 ## Учебный стенд
 
