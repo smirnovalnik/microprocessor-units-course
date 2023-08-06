@@ -12,7 +12,7 @@ Project Outputs for LearningStand
 DebugConfig
 Listings
 Objects
-RTE/
+RTE
 .cortex-debug.peripherals.state.json
 .cortex-debug.registers.state.json
 *.log
