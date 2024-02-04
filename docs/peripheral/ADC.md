@@ -1,6 +1,4 @@
-# Регистр АЦП - Analog-to-digital converter (ADC)
-
-В этом разделе дается подробное описание регистров ADC.
+# Регистры аналого-цифрового преобразователя (АЦП) - Analog-to-Digital Converter (ADC)
 
 - [Регистр АЦП - Analog-to-digital converter (ADC)](#регистр-ацп---analog-to-digital-converter-adc)
   - [Регистр прерывания и состояния](#регистр-прерывания-и-состояния)
