@@ -308,7 +308,6 @@ int main(void)
     //while(1);
 }
 
-
 /* Абсолютное значение числа */
 int abs(int n)
 {
