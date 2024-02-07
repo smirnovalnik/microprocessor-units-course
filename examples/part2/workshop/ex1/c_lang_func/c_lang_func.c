@@ -63,7 +63,7 @@ int find_min(int a[], int n)
     return min;
 }
 
-/* Функция подсчета количества элементов n в массиве */
+/* Функция подсчета количества элементов n в массиве a */
 int count_number(int a[], int len, int n)
 {
     int cnt = 0;
