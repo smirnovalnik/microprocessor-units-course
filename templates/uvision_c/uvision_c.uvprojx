@@ -10,14 +10,14 @@
       <TargetName>learning_stand</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>6130001::V6.13.1::.\ARMCLANG</pCCUsed>
-      <uAC6>1</uAC6>
+      <pCCUsed>5060528::V5.06 update 5 (build 528)::ARMCC</pCCUsed>
+      <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F072RBTx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F0xx_DFP.2.1.0</PackID>
-          <PackURL>http://www.keil.com/pack/</PackURL>
+          <PackID>Keil.STM32F0xx_DFP.2.1.1</PackID>
+          <PackURL>https://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x00004000) IROM(0x08000000,0x00020000) CPUTYPE("Cortex-M0") CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -184,7 +184,6 @@
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>0</RvdsVP>
-            <RvdsMve>0</RvdsMve>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -312,7 +311,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>7</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -321,11 +320,10 @@
             <PlainCh>0</PlainCh>
             <Ropi>0</Ropi>
             <Rwpi>0</Rwpi>
-            <wLevel>3</wLevel>
+            <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
-            <uGnu>1</uGnu>
             <useXO>0</useXO>
             <v6Lang>3</v6Lang>
             <v6LangP>3</v6LangP>
@@ -402,8 +400,8 @@
   <RTE>
     <apis/>
     <components>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.4.0" condition="ARMv6_7_8-M Device">
-        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="5.7.0"/>
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="5.6.0" condition="ARMv6_7_8-M Device">
+        <package name="CMSIS" schemaVersion="1.7.7" url="http://www.keil.com/pack/" vendor="ARM" version="5.9.0"/>
         <targetInfos>
           <targetInfo name="learning_stand"/>
         </targetInfos>
@@ -418,8 +416,8 @@
     <files>
       <file attr="config" category="source" condition="STM32F072xB ARMCC" name="Drivers\CMSIS\Device\ST\STM32F0xx\Source\Templates\arm\startup_stm32f072xb.s" version="2.3.3">
         <instance index="0">RTE\Device\STM32F072RBTx\startup_stm32f072xb.s</instance>
-        <component Cbundle="Standalone" Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32F0 CMSIS"/>
-        <package name="STM32F0xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="2.1.0"/>
+        <component Cbundle="Standalone" Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" Pre_Include_Global_h="#define USE_HAL_DRIVER&#xD;&#xA;          #define USE_FULL_LL_DRIVER" condition="STM32F0 CMSIS"/>
+        <package name="STM32F0xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.1.1"/>
         <targetInfos>
           <targetInfo name="learning_stand"/>
         </targetInfos>
@@ -432,8 +430,8 @@
       </file>
       <file attr="config" category="source" name="Drivers\CMSIS\Device\ST\STM32F0xx\Source\Templates\system_stm32f0xx.c" version="2.3.3">
         <instance index="0">RTE\Device\STM32F072RBTx\system_stm32f0xx.c</instance>
-        <component Cbundle="Standalone" Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" condition="STM32F0 CMSIS"/>
-        <package name="STM32F0xx_DFP" schemaVersion="1.6.0" url="http://www.keil.com/pack/" vendor="Keil" version="2.1.0"/>
+        <component Cbundle="Standalone" Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="1.0.0" Pre_Include_Global_h="#define USE_HAL_DRIVER&#xD;&#xA;          #define USE_FULL_LL_DRIVER" condition="STM32F0 CMSIS"/>
+        <package name="STM32F0xx_DFP" schemaVersion="1.7.2" url="https://www.keil.com/pack/" vendor="Keil" version="2.1.1"/>
         <targetInfos>
           <targetInfo name="learning_stand"/>
         </targetInfos>
