@@ -67,7 +67,7 @@ void led_set(uint16_t led, color_t color)
     /* Сброс трех битов управления цветом с помощью маски */
     GPIOA->ODR &= ~(7 << 6);
     /* Включение светодиодов нужного цвета */
-    GPIOA->ODR = tmp_color;
+    GPIOA->ODR |= tmp_color;
 }
 
 /* Функция инициализации таймера TIM1 */
