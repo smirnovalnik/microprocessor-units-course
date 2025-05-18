@@ -2,8 +2,8 @@
   ******************************************************************************
   * \file    uart_led.c
   * \author  Александр Смирнов
-  * \version 1.0.1
-  * \date    22.04.2023
+  * \version 1.0.2
+  * \date    18.05.2025
   * \brief   Программа на языке C для учебного стенда на базе
   *          STM32F072RBT6 в среде разработки Keil uVision 5.
   *          Подключение библиотек поддержки МК STM32F072RBT6 осуществляется
@@ -52,7 +52,7 @@ void usart_init(void)
     /* Включить тактирование USART2 */
     RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
 
-    /* Включить альтернативной функцию №1 (USART2) на линиях 2 и 3 */
+    /* Включить альтернативной функцию №1 (USART2) на линиях PA2 и PA3 */
     GPIOA->AFR[0] |= (1 << GPIO_AFRL_AFRL2_Pos) | (1 << GPIO_AFRL_AFRL3_Pos);
 
     /* Включить режим альтернативной функции на линиях PA2 и PA3 */
@@ -101,18 +101,22 @@ uint8_t usart_receive(void)
    такой функции. */
 int32_t _strncmp(const char s1[], const char s2[], uint32_t n)
 {
-    int32_t i = 0;
+    uint32_t i = 0;
 
-    while (s1[i] != '\0' && s2[i] != '\0' && --n > 0)
+    while (i < n)
     {
         if (s1[i] != s2[i])
         {
-            break;
+            return (unsigned char)s1[i] - (unsigned char)s2[i];
+        }
+        if (s1[i] == '\0')
+        {
+            return 0;
         }
         i++;
     }
 
-    return s1[i] - s2[i];
+    return 0;
 }
 
 /* Функция преобразования строки в число.
@@ -149,7 +153,7 @@ int main(void)
 {
     /* Инициализация светодиодов D1-D8 */
     leds_init();
-    /* Инициализация таймера TIM1 */
+    /* Инициализация USART */
     usart_init();
 
     char buf[20] = {0};
@@ -201,7 +205,7 @@ int main(void)
             /* Буфер наполняется заново */
             pos = 0;
             /* Очистка буфера */
-            for(int32_t i = 0; i < 20; i++)
+            for (int32_t i = 0; i < 20; i++)
             {
                 buf[i] = '\0';
             }
