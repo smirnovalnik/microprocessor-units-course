@@ -168,7 +168,7 @@ int main(void)
            Символ `\r` передается при нажатии клавиши Enter в терминале. */
         if (ch != '\r')
         {
-            if (pos < 20)
+            if (pos < sizeof(buf) - 1)
             {
                 buf[pos] = ch;
                 pos++;
@@ -205,7 +205,7 @@ int main(void)
             /* Буфер наполняется заново */
             pos = 0;
             /* Очистка буфера */
-            for (int32_t i = 0; i < 20; i++)
+            for (int32_t i = 0; i < sizeof(buf); i++)
             {
                 buf[i] = '\0';
             }
