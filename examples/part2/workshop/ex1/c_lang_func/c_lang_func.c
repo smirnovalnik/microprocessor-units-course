@@ -101,5 +101,5 @@ int main(void)
     int arr[] = {4, 8, -10, 12, 18, 24, -8, 0, 1, 0};
 
     c = find_min(arr, 10);  /* c = -10 */
-    c = count_number(arr, 10, 0);   /* c = 0 */
+    c = count_number(arr, 10, 0);   /* c = 2 */
 }
